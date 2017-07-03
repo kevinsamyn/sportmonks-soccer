@@ -56,9 +56,9 @@ public class Fixture {
 	@JsonProperty("weather_report")
 	private WeatherReport weatherReport;
 	@JsonProperty("commentaries")
-	private Object commentaries;
+	private Commentaries commentaries;
 	@JsonProperty("attendance")
-	private Object attendance;
+	private Integer attendance;
 	@JsonProperty("winning_odds_calculated")
 	private Boolean winningOddsCalculated;
 	@JsonProperty("formations")
@@ -68,7 +68,7 @@ public class Fixture {
 	@JsonProperty("time")
 	private FixtureTime time;
 	@JsonProperty("deleted")
-	private Integer deleted;
+	private Boolean deleted;
 	@JsonProperty("localTeam")
 	private FixtureTeam localTeam;
 	@JsonProperty("visitorTeam")
@@ -219,22 +219,22 @@ public class Fixture {
 	}
 
 	@JsonProperty("commentaries")
-	public Object getCommentaries() {
+	public Commentaries getCommentaries() {
 		return commentaries;
 	}
 
 	@JsonProperty("commentaries")
-	public void setCommentaries(Object commentaries) {
+	public void setCommentaries(Commentaries commentaries) {
 		this.commentaries = commentaries;
 	}
 
 	@JsonProperty("attendance")
-	public Object getAttendance() {
+	public Integer getAttendance() {
 		return attendance;
 	}
 
 	@JsonProperty("attendance")
-	public void setAttendance(Object attendance) {
+	public void setAttendance(Integer attendance) {
 		this.attendance = attendance;
 	}
 
@@ -279,12 +279,12 @@ public class Fixture {
 	}
 
 	@JsonProperty("deleted")
-	public Integer getDeleted() {
+	public Boolean getDeleted() {
 		return deleted;
 	}
 
 	@JsonProperty("deleted")
-	public void setDeleted(Integer deleted) {
+	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
 

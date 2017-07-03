@@ -15,60 +15,60 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class FixtureScores {
 
 	@JsonProperty("localteam_score")
-	private Integer localteamScore;
+	private Integer localTeamScore;
 	@JsonProperty("visitorteam_score")
-	private Integer visitorteamScore;
+	private Integer visitorTeamScore;
 	@JsonProperty("localteam_pen_score")
-	private Object localteamPenScore;
+	private Object localTeamPenScore;
 	@JsonProperty("visitorteam_pen_score")
-	private Object visitorteamPenScore;
+	private Object visitorTeamPenScore;
 	@JsonProperty("ht_score")
 	private String htScore;
 	@JsonProperty("ft_score")
 	private String ftScore;
 	@JsonProperty("et_score")
-	private Object etScore;
+	private String etScore;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("localteam_score")
-	public Integer getLocalteamScore() {
-		return localteamScore;
+	public Integer getLocalTeamScore() {
+		return localTeamScore;
 	}
 
 	@JsonProperty("localteam_score")
-	public void setLocalteamScore(Integer localteamScore) {
-		this.localteamScore = localteamScore;
+	public void setLocalteamScore(Integer localTeamScore) {
+		this.localTeamScore = localTeamScore;
 	}
 
 	@JsonProperty("visitorteam_score")
-	public Integer getVisitorteamScore() {
-		return visitorteamScore;
+	public Integer getVisitorTeamScore() {
+		return visitorTeamScore;
 	}
 
 	@JsonProperty("visitorteam_score")
-	public void setVisitorteamScore(Integer visitorteamScore) {
-		this.visitorteamScore = visitorteamScore;
+	public void setVisitorTeamScore(Integer visitorteamScore) {
+		this.visitorTeamScore = visitorteamScore;
 	}
 
 	@JsonProperty("localteam_pen_score")
-	public Object getLocalteamPenScore() {
-		return localteamPenScore;
+	public Object getLocalTeamPenScore() {
+		return localTeamPenScore;
 	}
 
 	@JsonProperty("localteam_pen_score")
 	public void setLocalteamPenScore(Object localteamPenScore) {
-		this.localteamPenScore = localteamPenScore;
+		this.localTeamPenScore = localteamPenScore;
 	}
 
 	@JsonProperty("visitorteam_pen_score")
-	public Object getVisitorteamPenScore() {
-		return visitorteamPenScore;
+	public Object getVisitorTeamPenScore() {
+		return visitorTeamPenScore;
 	}
 
 	@JsonProperty("visitorteam_pen_score")
-	public void setVisitorteamPenScore(Object visitorteamPenScore) {
-		this.visitorteamPenScore = visitorteamPenScore;
+	public void setVisitorTeamPenScore(Object visitorTeamPenScore) {
+		this.visitorTeamPenScore = visitorTeamPenScore;
 	}
 
 	@JsonProperty("ht_score")
@@ -92,12 +92,12 @@ public class FixtureScores {
 	}
 
 	@JsonProperty("et_score")
-	public Object getEtScore() {
+	public String getEtScore() {
 		return etScore;
 	}
 
 	@JsonProperty("et_score")
-	public void setEtScore(Object etScore) {
+	public void setEtScore(String etScore) {
 		this.etScore = etScore;
 	}
 

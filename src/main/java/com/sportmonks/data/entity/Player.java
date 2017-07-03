@@ -16,13 +16,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Player {
 
 	@JsonProperty("player_id")
-	private Integer playerId;
+	private Long playerId;
 	@JsonProperty("team_id")
-	private Object teamId;
+	private Long teamId;
 	@JsonProperty("country_id")
-	private Integer countryId;
+	private Long countryId;
 	@JsonProperty("position_id")
-	private Object positionId;
+	private Long positionId;
 	@JsonProperty("common_name")
 	private String commonName;
 	@JsonProperty("fullname")
@@ -49,42 +49,42 @@ public class Player {
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("player_id")
-	public Integer getPlayerId() {
+	public Long getPlayerId() {
 		return playerId;
 	}
 
 	@JsonProperty("player_id")
-	public void setPlayerId(Integer playerId) {
+	public void setPlayerId(Long playerId) {
 		this.playerId = playerId;
 	}
 
 	@JsonProperty("team_id")
-	public Object getTeamId() {
+	public Long getTeamId() {
 		return teamId;
 	}
 
 	@JsonProperty("team_id")
-	public void setTeamId(Object teamId) {
+	public void setTeamId(Long teamId) {
 		this.teamId = teamId;
 	}
 
 	@JsonProperty("country_id")
-	public Integer getCountryId() {
+	public Long getCountryId() {
 		return countryId;
 	}
 
 	@JsonProperty("country_id")
-	public void setCountryId(Integer countryId) {
+	public void setCountryId(Long countryId) {
 		this.countryId = countryId;
 	}
 
 	@JsonProperty("position_id")
-	public Object getPositionId() {
+	public Long getPositionId() {
 		return positionId;
 	}
 
 	@JsonProperty("position_id")
-	public void setPositionId(Object positionId) {
+	public void setPositionId(Long positionId) {
 		this.positionId = positionId;
 	}
 

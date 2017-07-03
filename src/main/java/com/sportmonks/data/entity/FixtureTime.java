@@ -25,9 +25,9 @@ public class FixtureTime {
 	@JsonProperty("minute")
 	private Integer minute;
 	@JsonProperty("extra_minute")
-	private Object extraMinute;
+	private Integer extraMinute;
 	@JsonProperty("injury_time")
-	private Object injuryTime;
+	private Integer injuryTime;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -62,22 +62,22 @@ public class FixtureTime {
 	}
 
 	@JsonProperty("extra_minute")
-	public Object getExtraMinute() {
+	public Integer getExtraMinute() {
 		return extraMinute;
 	}
 
 	@JsonProperty("extra_minute")
-	public void setExtraMinute(Object extraMinute) {
+	public void setExtraMinute(Integer extraMinute) {
 		this.extraMinute = extraMinute;
 	}
 
 	@JsonProperty("injury_time")
-	public Object getInjuryTime() {
+	public Integer getInjuryTime() {
 		return injuryTime;
 	}
 
 	@JsonProperty("injury_time")
-	public void setInjuryTime(Object injuryTime) {
+	public void setInjuryTime(Integer injuryTime) {
 		this.injuryTime = injuryTime;
 	}
 

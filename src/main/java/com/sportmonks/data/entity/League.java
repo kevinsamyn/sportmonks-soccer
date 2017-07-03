@@ -22,15 +22,15 @@ public class League {
 	@JsonProperty("name")
 	private String name;
 	@JsonProperty("is_cup")
-	private Integer isCup;
+	private Boolean isCup;
 	@JsonProperty("current_season_id")
-	private Integer currentSeasonId;
+	private Long currentSeasonId;
 	@JsonProperty("current_round_id")
-	private Object currentRoundId;
+	private Long currentRoundId;
 	@JsonProperty("current_stage_id")
-	private Object currentStageId;
+	private Long currentStageId;
 	@JsonProperty("country_id")
-	private Integer countryId;
+	private Long countryId;
 	@JsonProperty("seasons")
 	private Seasons seasons;
 	@JsonProperty("season")
@@ -69,52 +69,52 @@ public class League {
 	}
 
 	@JsonProperty("is_cup")
-	public Integer getIsCup() {
+	public Boolean getIsCup() {
 		return isCup;
 	}
 
 	@JsonProperty("is_cup")
-	public void setIsCup(Integer isCup) {
+	public void setIsCup(Boolean isCup) {
 		this.isCup = isCup;
 	}
 
 	@JsonProperty("current_season_id")
-	public Integer getCurrentSeasonId() {
+	public Long getCurrentSeasonId() {
 		return currentSeasonId;
 	}
 
 	@JsonProperty("current_season_id")
-	public void setCurrentSeasonId(Integer currentSeasonId) {
+	public void setCurrentSeasonId(Long currentSeasonId) {
 		this.currentSeasonId = currentSeasonId;
 	}
 
 	@JsonProperty("current_round_id")
-	public Object getCurrentRoundId() {
+	public Long getCurrentRoundId() {
 		return currentRoundId;
 	}
 
 	@JsonProperty("current_round_id")
-	public void setCurrentRoundId(Object currentRoundId) {
+	public void setCurrentRoundId(Long currentRoundId) {
 		this.currentRoundId = currentRoundId;
 	}
 
 	@JsonProperty("current_stage_id")
-	public Object getCurrentStageId() {
+	public Long getCurrentStageId() {
 		return currentStageId;
 	}
 
 	@JsonProperty("current_stage_id")
-	public void setCurrentStageId(Object currentStageId) {
+	public void setCurrentStageId(Long currentStageId) {
 		this.currentStageId = currentStageId;
 	}
 
 	@JsonProperty("country_id")
-	public Integer getCountryId() {
+	public Long getCountryId() {
 		return countryId;
 	}
 
 	@JsonProperty("country_id")
-	public void setCountryId(Integer countryId) {
+	public void setCountryId(Long countryId) {
 		this.countryId = countryId;
 	}
 

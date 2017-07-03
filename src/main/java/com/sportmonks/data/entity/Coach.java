@@ -9,49 +9,36 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.sportmonks.data.structure.Odds;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id", "name", "odds" })
-public class OfferBookmaker {
+@JsonPropertyOrder({ "coach_id", "fullname" })
+public class Coach {
 
-	@JsonProperty("id")
+	@JsonProperty("coach_id")
 	private Long id;
-	@JsonProperty("name")
-	private String name;
-	@JsonProperty("odds")
-	private Odds odds;
+	@JsonProperty("fullname")
+	private String fullname;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-	@JsonProperty("id")
+	@JsonProperty("coach_id")
 	public Long getId() {
 		return id;
 	}
 
-	@JsonProperty("id")
+	@JsonProperty("coach_id")
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@JsonProperty("name")
-	public String getName() {
-		return name;
+	@JsonProperty("fullname")
+	public String getFullname() {
+		return fullname;
 	}
 
-	@JsonProperty("name")
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@JsonProperty("odds")
-	public Odds getOdds() {
-		return odds;
-	}
-
-	@JsonProperty("odds")
-	public void setOdds(Odds odds) {
-		this.odds = odds;
+	@JsonProperty("fullname")
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 
 	@JsonAnyGetter

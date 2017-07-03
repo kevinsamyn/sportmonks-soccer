@@ -81,7 +81,7 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 	 * @return
 	 * @throws NotFoundException
 	 */
-	public Season findOne(final Integer seasonId) throws NotFoundException {
+	public Season findOne(final Long seasonId) throws NotFoundException {
 		final SeasonsEndPointParams params = new SeasonsEndPointParams();
 		params.setSeasonId(seasonId);
 		return findOne(params);
@@ -114,7 +114,7 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 	 * Seasoon relations
 	 */
 	public enum Relation {
-		league, stages, rounds, fixtures
+		league, stages, rounds, fixtures, upcoming, results;
 	}
 
 }

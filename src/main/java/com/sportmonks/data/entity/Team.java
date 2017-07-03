@@ -9,16 +9,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.sportmonks.data.structure.Coachs;
+import com.sportmonks.data.structure.FifaRanking;
 import com.sportmonks.data.structure.Squad;
-import com.sportmonks.data.structure.TeamStats;
+import com.sportmonks.data.structure.UefaRanking;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id", "legacy_id", "name", "twitter", "country_id", "national_team", "founded", "logo_path", "venue_id", "country", "squad", "stats",
-		"venue" })
+@JsonPropertyOrder({ "id", "legacy_id", "name", "twitter", "country_id", "national_team", "founded", "logo_path", "venue_id", "squad", "venue", "coach",
+		"fifaranking", "uefaranking" })
 public class Team {
 
 	@JsonProperty("id")
-	private Integer id;
+	private Long id;
 	@JsonProperty("legacy_id")
 	private Integer legacyId;
 	@JsonProperty("name")
@@ -26,7 +28,7 @@ public class Team {
 	@JsonProperty("twitter")
 	private Object twitter;
 	@JsonProperty("country_id")
-	private Integer countryId;
+	private Long countryId;
 	@JsonProperty("national_team")
 	private Boolean nationalTeam;
 	@JsonProperty("founded")
@@ -34,25 +36,27 @@ public class Team {
 	@JsonProperty("logo_path")
 	private String logoPath;
 	@JsonProperty("venue_id")
-	private Integer venueId;
-	@JsonProperty("country")
-	private Country country;
+	private Long venueId;
 	@JsonProperty("squad")
 	private Squad squad;
-	@JsonProperty("stats")
-	private TeamStats stats;
 	@JsonProperty("venue")
 	private Venue venue;
+	@JsonProperty("coach")
+	private Coachs coachs;
+	@JsonProperty("fifaranking")
+	private FifaRanking fifaRanking;
+	@JsonProperty("uefaranking")
+	private UefaRanking uefaRanking;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("id")
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -87,12 +91,12 @@ public class Team {
 	}
 
 	@JsonProperty("country_id")
-	public Integer getCountryId() {
+	public Long getCountryId() {
 		return countryId;
 	}
 
 	@JsonProperty("country_id")
-	public void setCountryId(Integer countryId) {
+	public void setCountryId(Long countryId) {
 		this.countryId = countryId;
 	}
 
@@ -127,23 +131,13 @@ public class Team {
 	}
 
 	@JsonProperty("venue_id")
-	public Integer getVenueId() {
+	public Long getVenueId() {
 		return venueId;
 	}
 
 	@JsonProperty("venue_id")
-	public void setVenueId(Integer venueId) {
+	public void setVenueId(Long venueId) {
 		this.venueId = venueId;
-	}
-
-	@JsonProperty("country")
-	public Country getCountry() {
-		return country;
-	}
-
-	@JsonProperty("country")
-	public void setCountry(Country country) {
-		this.country = country;
 	}
 
 	@JsonProperty("squad")
@@ -156,16 +150,6 @@ public class Team {
 		this.squad = squad;
 	}
 
-	@JsonProperty("stats")
-	public TeamStats getStats() {
-		return stats;
-	}
-
-	@JsonProperty("stats")
-	public void setStats(TeamStats stats) {
-		this.stats = stats;
-	}
-
 	@JsonProperty("venue")
 	public Venue getVenue() {
 		return venue;
@@ -174,6 +158,36 @@ public class Team {
 	@JsonProperty("venue")
 	public void setVenue(Venue venue) {
 		this.venue = venue;
+	}
+
+	@JsonProperty("coach")
+	public Coachs getCoachs() {
+		return coachs;
+	}
+
+	@JsonProperty("coach")
+	public void setCoachs(Coachs coachs) {
+		this.coachs = coachs;
+	}
+
+	@JsonProperty("fifaRanking")
+	public FifaRanking getFifaRanking() {
+		return fifaRanking;
+	}
+
+	@JsonProperty("fifaRanking")
+	public void setFifaRanking(FifaRanking fifaRanking) {
+		this.fifaRanking = fifaRanking;
+	}
+
+	@JsonProperty("uefaRanking")
+	public UefaRanking getUefaRanking() {
+		return uefaRanking;
+	}
+
+	@JsonProperty("uefaRanking")
+	public void setUefaRanking(UefaRanking uefaRanking) {
+		this.uefaRanking = uefaRanking;
 	}
 
 	@JsonAnyGetter

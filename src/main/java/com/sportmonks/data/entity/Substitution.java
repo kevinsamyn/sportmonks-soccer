@@ -15,17 +15,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Substitution {
 
 	@JsonProperty("id")
-	private Integer id;
+	private Long id;
 	@JsonProperty("type")
 	private String type;
 	@JsonProperty("fixture_id")
-	private Integer fixtureId;
+	private Long fixtureId;
 	@JsonProperty("player_out_id")
-	private Integer playerOutId;
+	private Long playerOutId;
 	@JsonProperty("player_out_name")
 	private String playerOutName;
 	@JsonProperty("player_in_id")
-	private Integer playerInId;
+	private Long playerInId;
 	@JsonProperty("player_in_name")
 	private String playerInName;
 	@JsonProperty("minute")
@@ -38,12 +38,12 @@ public class Substitution {
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("id")
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -58,22 +58,22 @@ public class Substitution {
 	}
 
 	@JsonProperty("fixture_id")
-	public Integer getFixtureId() {
+	public Long getFixtureId() {
 		return fixtureId;
 	}
 
 	@JsonProperty("fixture_id")
-	public void setFixtureId(Integer fixtureId) {
+	public void setFixtureId(Long fixtureId) {
 		this.fixtureId = fixtureId;
 	}
 
 	@JsonProperty("player_out_id")
-	public Integer getPlayerOutId() {
+	public Long getPlayerOutId() {
 		return playerOutId;
 	}
 
 	@JsonProperty("player_out_id")
-	public void setPlayerOutId(Integer playerOutId) {
+	public void setPlayerOutId(Long playerOutId) {
 		this.playerOutId = playerOutId;
 	}
 
@@ -88,12 +88,12 @@ public class Substitution {
 	}
 
 	@JsonProperty("player_in_id")
-	public Integer getPlayerInId() {
+	public Long getPlayerInId() {
 		return playerInId;
 	}
 
 	@JsonProperty("player_in_id")
-	public void setPlayerInId(Integer playerInId) {
+	public void setPlayerInId(Long playerInId) {
 		this.playerInId = playerInId;
 	}
 

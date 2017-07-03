@@ -16,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class SquadMember {
 
 	@JsonProperty("player_id")
-	private Integer playerId;
+	private Long playerId;
 	@JsonProperty("position_id")
-	private Integer positionId;
+	private Long positionId;
 	@JsonProperty("number")
 	private Integer number;
 	@JsonProperty("injured")
@@ -49,22 +49,22 @@ public class SquadMember {
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("player_id")
-	public Integer getPlayerId() {
+	public Long getPlayerId() {
 		return playerId;
 	}
 
 	@JsonProperty("player_id")
-	public void setPlayerId(Integer playerId) {
+	public void setPlayerId(Long playerId) {
 		this.playerId = playerId;
 	}
 
 	@JsonProperty("position_id")
-	public Integer getPositionId() {
+	public Long getPositionId() {
 		return positionId;
 	}
 
 	@JsonProperty("position_id")
-	public void setPositionId(Integer positionId) {
+	public void setPositionId(Long positionId) {
 		this.positionId = positionId;
 	}
 

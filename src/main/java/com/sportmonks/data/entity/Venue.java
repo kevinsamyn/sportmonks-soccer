@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Venue {
 
 	@JsonProperty("id")
-	private Integer id;
+	private Long id;
 	@JsonProperty("name")
 	private String name;
 	@JsonProperty("surface")
@@ -32,12 +32,12 @@ public class Venue {
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("id")
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

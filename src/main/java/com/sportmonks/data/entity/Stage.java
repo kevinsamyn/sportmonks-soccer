@@ -15,21 +15,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Stage {
 
 	@JsonProperty("id")
-	private Integer id;
+	private Long id;
 	@JsonProperty("name")
 	private String name;
 	@JsonProperty("league_id")
-	private Integer leagueId;
+	private Long leagueId;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("id")
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -44,12 +44,12 @@ public class Stage {
 	}
 
 	@JsonProperty("league_id")
-	public Integer getLeagueId() {
+	public Long getLeagueId() {
 		return leagueId;
 	}
 
 	@JsonProperty("league_id")
-	public void setLeagueId(Integer leagueId) {
+	public void setLeagueId(Long leagueId) {
 		this.leagueId = leagueId;
 	}
 

@@ -68,7 +68,7 @@ public class PlayersEndPoint extends AbstractEndPoint {
 	 * @return
 	 * @throws NotFoundException
 	 */
-	public Player findById(final Integer playerId) throws NotFoundException {
+	public Player findById(final Long playerId) throws NotFoundException {
 		final PlayersEndPointParams params = new PlayersEndPointParams();
 		params.setPlayerId(playerId);
 		return findOne(params);

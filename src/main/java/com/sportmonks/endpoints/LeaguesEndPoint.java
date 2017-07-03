@@ -111,7 +111,7 @@ public class LeaguesEndPoint extends AbstractEndPoint {
 	 * Leagues relations
 	 */
 	public enum Relation {
-		seasons, season
+		country, fixtures, season, seasons
 	}
 
 }

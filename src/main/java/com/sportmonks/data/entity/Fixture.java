@@ -34,25 +34,25 @@ import com.sportmonks.data.structure.Stats;
 public class Fixture {
 
 	@JsonProperty("id")
-	private Integer id;
+	private Long id;
 	@JsonProperty("league_id")
-	private Integer leagueId;
+	private Long leagueId;
 	@JsonProperty("season_id")
-	private Integer seasonId;
+	private Long seasonId;
 	@JsonProperty("stage_id")
-	private Integer stageId;
+	private Long stageId;
 	@JsonProperty("round_id")
-	private Integer roundId;
+	private Long roundId;
 	@JsonProperty("aggregate_id")
-	private Object aggregateId;
+	private Long aggregateId;
 	@JsonProperty("venue_id")
-	private Integer venueId;
+	private Long venueId;
 	@JsonProperty("referee_id")
-	private Integer refereeId;
+	private Long refereeId;
 	@JsonProperty("localteam_id")
-	private Integer localteamId;
+	private Long localteamId;
 	@JsonProperty("visitorteam_id")
-	private Integer visitorteamId;
+	private Long visitorteamId;
 	@JsonProperty("weather_report")
 	private WeatherReport weatherReport;
 	@JsonProperty("commentaries")
@@ -109,102 +109,102 @@ public class Fixture {
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("id")
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
 	@JsonProperty("league_id")
-	public Integer getLeagueId() {
+	public Long getLeagueId() {
 		return leagueId;
 	}
 
 	@JsonProperty("league_id")
-	public void setLeagueId(Integer leagueId) {
+	public void setLeagueId(Long leagueId) {
 		this.leagueId = leagueId;
 	}
 
 	@JsonProperty("season_id")
-	public Integer getSeasonId() {
+	public Long getSeasonId() {
 		return seasonId;
 	}
 
 	@JsonProperty("season_id")
-	public void setSeasonId(Integer seasonId) {
+	public void setSeasonId(Long seasonId) {
 		this.seasonId = seasonId;
 	}
 
 	@JsonProperty("stage_id")
-	public Integer getStageId() {
+	public Long getStageId() {
 		return stageId;
 	}
 
 	@JsonProperty("stage_id")
-	public void setStageId(Integer stageId) {
+	public void setStageId(Long stageId) {
 		this.stageId = stageId;
 	}
 
 	@JsonProperty("round_id")
-	public Integer getRoundId() {
+	public Long getRoundId() {
 		return roundId;
 	}
 
 	@JsonProperty("round_id")
-	public void setRoundId(Integer roundId) {
+	public void setRoundId(Long roundId) {
 		this.roundId = roundId;
 	}
 
 	@JsonProperty("aggregate_id")
-	public Object getAggregateId() {
+	public Long getAggregateId() {
 		return aggregateId;
 	}
 
 	@JsonProperty("aggregate_id")
-	public void setAggregateId(Object aggregateId) {
+	public void setAggregateId(Long aggregateId) {
 		this.aggregateId = aggregateId;
 	}
 
 	@JsonProperty("venue_id")
-	public Integer getVenueId() {
+	public Long getVenueId() {
 		return venueId;
 	}
 
 	@JsonProperty("venue_id")
-	public void setVenueId(Integer venueId) {
+	public void setVenueId(Long venueId) {
 		this.venueId = venueId;
 	}
 
 	@JsonProperty("referee_id")
-	public Integer getRefereeId() {
+	public Long getRefereeId() {
 		return refereeId;
 	}
 
 	@JsonProperty("referee_id")
-	public void setRefereeId(Integer refereeId) {
+	public void setRefereeId(Long refereeId) {
 		this.refereeId = refereeId;
 	}
 
 	@JsonProperty("localteam_id")
-	public Integer getLocalteamId() {
+	public Long getLocalteamId() {
 		return localteamId;
 	}
 
 	@JsonProperty("localteam_id")
-	public void setLocalteamId(Integer localteamId) {
+	public void setLocalteamId(Long localteamId) {
 		this.localteamId = localteamId;
 	}
 
 	@JsonProperty("visitorteam_id")
-	public Integer getVisitorteamId() {
+	public Long getVisitorteamId() {
 		return visitorteamId;
 	}
 
 	@JsonProperty("visitorteam_id")
-	public void setVisitorteamId(Integer visitorteamId) {
+	public void setVisitorteamId(Long visitorteamId) {
 		this.visitorteamId = visitorteamId;
 	}
 

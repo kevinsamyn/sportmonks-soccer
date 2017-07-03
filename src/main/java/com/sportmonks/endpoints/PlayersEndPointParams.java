@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
  * Created by kevin on 28/05/2016.
  */
 public class PlayersEndPointParams extends AbstractEndPointParams {
-	private Integer playerId;
+	private Long playerId;
 	private Set<String> relations = new HashSet<>();
 
 	public void addRelation(final PlayersEndPoint.Relation relation) {
@@ -24,11 +24,11 @@ public class PlayersEndPointParams extends AbstractEndPointParams {
 		return playerId != null && playerId > 0;
 	}
 
-	public Integer getPlayerId() {
+	public Long getPlayerId() {
 		return playerId;
 	}
 
-	public void setPlayerId(Integer playerId) {
+	public void setPlayerId(Long playerId) {
 		this.playerId = playerId;
 	}
 

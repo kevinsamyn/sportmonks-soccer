@@ -9,14 +9,14 @@ import org.apache.commons.lang3.StringUtils;
  * Created by kevin on 21/05/2016.
  */
 public class SeasonsEndPointParams extends AbstractEndPointParams {
-	private Integer seasonId;
+	private Long seasonId;
 	private Set<String> relations = new HashSet<>();
 
-	public Integer getSeasonId() {
+	public Long getSeasonId() {
 		return seasonId;
 	}
 
-	public void setSeasonId(Integer seasonId) {
+	public void setSeasonId(Long seasonId) {
 		this.seasonId = seasonId;
 	}
 

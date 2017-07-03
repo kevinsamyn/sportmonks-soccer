@@ -1,6 +1,7 @@
-package com.sportmonks.data.entity;
+package com.sportmonks.data.structure;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -9,49 +10,25 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.sportmonks.data.structure.Odds;
+import com.sportmonks.data.entity.UefaRank;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id", "name", "odds" })
-public class OfferBookmaker {
+@JsonPropertyOrder({ "data" })
+public class UefaRanking {
 
-	@JsonProperty("id")
-	private Long id;
-	@JsonProperty("name")
-	private String name;
-	@JsonProperty("odds")
-	private Odds odds;
+	@JsonProperty("data")
+	private List<UefaRank> data = null;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-	@JsonProperty("id")
-	public Long getId() {
-		return id;
+	@JsonProperty("data")
+	public List<UefaRank> getData() {
+		return data;
 	}
 
-	@JsonProperty("id")
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@JsonProperty("name")
-	public String getName() {
-		return name;
-	}
-
-	@JsonProperty("name")
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@JsonProperty("odds")
-	public Odds getOdds() {
-		return odds;
-	}
-
-	@JsonProperty("odds")
-	public void setOdds(Odds odds) {
-		this.odds = odds;
+	@JsonProperty("data")
+	public void setData(List<UefaRank> data) {
+		this.data = data;
 	}
 
 	@JsonAnyGetter

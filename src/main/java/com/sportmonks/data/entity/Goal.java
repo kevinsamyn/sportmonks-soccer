@@ -15,13 +15,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Goal {
 
 	@JsonProperty("id")
-	private Integer id;
+	private Long id;
 	@JsonProperty("type")
 	private String type;
 	@JsonProperty("fixture_id")
-	private Integer fixtureId;
+	private Long fixtureId;
 	@JsonProperty("player_id")
-	private Integer playerId;
+	private Long playerId;
 	@JsonProperty("player_name")
 	private String playerName;
 	@JsonProperty("player_assist_id")
@@ -36,12 +36,12 @@ public class Goal {
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("id")
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -56,22 +56,22 @@ public class Goal {
 	}
 
 	@JsonProperty("fixture_id")
-	public Integer getFixtureId() {
+	public Long getFixtureId() {
 		return fixtureId;
 	}
 
 	@JsonProperty("fixture_id")
-	public void setFixtureId(Integer fixtureId) {
+	public void setFixtureId(Long fixtureId) {
 		this.fixtureId = fixtureId;
 	}
 
 	@JsonProperty("player_id")
-	public Integer getPlayerId() {
+	public Long getPlayerId() {
 		return playerId;
 	}
 
 	@JsonProperty("player_id")
-	public void setPlayerId(Integer playerId) {
+	public void setPlayerId(Long playerId) {
 		this.playerId = playerId;
 	}
 

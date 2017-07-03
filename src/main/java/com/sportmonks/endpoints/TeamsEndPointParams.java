@@ -9,35 +9,35 @@ import org.apache.commons.lang3.StringUtils;
  * Created by kevin on 21/05/2016.
  */
 public class TeamsEndPointParams extends AbstractEndPointParams {
-	private Integer teamId;
-	private Integer seasonId;
+	private Long teamId;
+	private Long seasonId;
 	private Set<String> relations = new HashSet<>();
 
 	/**
 	 * @return
 	 */
-	public Integer getTeamId() {
+	public Long getTeamId() {
 		return teamId;
 	}
 
 	/**
 	 * @param teamId
 	 */
-	public void setTeamId(Integer teamId) {
+	public void setTeamId(Long teamId) {
 		this.teamId = teamId;
 	}
 
 	/**
 	 * @return
 	 */
-	public Integer getSeasonId() {
+	public Long getSeasonId() {
 		return seasonId;
 	}
 
 	/**
 	 * @param seasonId
 	 */
-	public void setSeasonId(Integer seasonId) {
+	public void setSeasonId(Long seasonId) {
 		this.seasonId = seasonId;
 	}
 

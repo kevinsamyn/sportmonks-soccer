@@ -15,15 +15,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 public class Round {
 
 	@JsonProperty("id")
-	private Integer id;
+	private Long id;
 	@JsonProperty("name")
 	private Integer name;
 	@JsonProperty("league_id")
-	private Integer leagueId;
+	private Long leagueId;
 	@JsonProperty("season_id")
-	private Integer seasonId;
+	private Long seasonId;
 	@JsonProperty("stage_id")
-	private Integer stageId;
+	private Long stageId;
 	@JsonProperty("start")
 	private String start;
 	@JsonProperty("end")
@@ -32,12 +32,12 @@ public class Round {
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("id")
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -52,32 +52,32 @@ public class Round {
 	}
 
 	@JsonProperty("league_id")
-	public Integer getLeagueId() {
+	public Long getLeagueId() {
 		return leagueId;
 	}
 
 	@JsonProperty("league_id")
-	public void setLeagueId(Integer leagueId) {
+	public void setLeagueId(Long leagueId) {
 		this.leagueId = leagueId;
 	}
 
 	@JsonProperty("season_id")
-	public Integer getSeasonId() {
+	public Long getSeasonId() {
 		return seasonId;
 	}
 
 	@JsonProperty("season_id")
-	public void setSeasonId(Integer seasonId) {
+	public void setSeasonId(Long seasonId) {
 		this.seasonId = seasonId;
 	}
 
 	@JsonProperty("stage_id")
-	public Integer getStageId() {
+	public Long getStageId() {
 		return stageId;
 	}
 
 	@JsonProperty("stage_id")
-	public void setStageId(Integer stageId) {
+	public void setStageId(Long stageId) {
 		this.stageId = stageId;
 	}
 

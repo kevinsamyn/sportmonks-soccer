@@ -46,7 +46,7 @@ public class TeamsEndPoint extends AbstractEndPoint {
 	 * @return
 	 * @throws NotFoundException
 	 */
-	public Team findById(final Integer teamId) throws NotFoundException {
+	public Team findById(final Long teamId) throws NotFoundException {
 		final TeamsEndPointParams params = new TeamsEndPointParams();
 		params.setTeamId(teamId);
 		return findById(params);
@@ -74,7 +74,7 @@ public class TeamsEndPoint extends AbstractEndPoint {
 	 * @param seasonId
 	 * @return
 	 */
-	public List<Team> findBySeason(final Integer seasonId) {
+	public List<Team> findBySeason(final Long seasonId) {
 		final TeamsEndPointParams params = new TeamsEndPointParams();
 		params.setSeasonId(seasonId);
 		return findBySeason(params);
@@ -150,7 +150,7 @@ public class TeamsEndPoint extends AbstractEndPoint {
 	 * Team relations
 	 */
 	public enum Relation {
-		country, squad, transfers, sidelines, stats, venue
+		country, squad, coach, transfers, sidelined, stats, venue, fifaranking, uefaranking
 	}
 
 }

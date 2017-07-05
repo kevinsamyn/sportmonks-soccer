@@ -1,8 +1,5 @@
 package com.sportmonks.data.entity;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.sportmonks.data.structure.Continents;
 import com.sportmonks.data.structure.Leagues;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "id", "name", "extra", "continent", "leagues" })
@@ -23,7 +23,7 @@ public class Country {
 	@JsonProperty("extra")
 	private CountryExtra extra;
 	@JsonProperty("continent")
-	private Continents continents;
+	private Continents continent;
 	@JsonProperty("leagues")
 	private Leagues leagues;
 	@JsonIgnore
@@ -60,13 +60,13 @@ public class Country {
 	}
 
 	@JsonProperty("continent")
-	public Continents getContinents() {
-		return continents;
+	public Continents getContinent() {
+		return continent;
 	}
 
 	@JsonProperty("continent")
-	public void setContinents(Continents continents) {
-		this.continents = continents;
+	public void setContinent(Continents continent) {
+		this.continent = continent;
 	}
 
 	@JsonProperty("leagues")

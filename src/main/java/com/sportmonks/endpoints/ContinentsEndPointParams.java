@@ -12,7 +12,7 @@ public class ContinentsEndPointParams extends AbstractEndPointParams {
 	private Integer continentId;
 	private Set<String> relations = new HashSet<>();
 
-	public void addRelation(final CountriesEndPoint.Relation relation) {
+	public void addRelation(final ContinentsEndPoint.Relation relation) {
 		relations.add(relation.toString());
 	}
 

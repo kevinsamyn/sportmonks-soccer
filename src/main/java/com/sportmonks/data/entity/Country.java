@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.sportmonks.data.structure.Continents;
 import com.sportmonks.data.structure.Leagues;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -22,7 +23,7 @@ public class Country {
 	@JsonProperty("extra")
 	private CountryExtra extra;
 	@JsonProperty("continent")
-	private Continent continent;
+	private Continents continents;
 	@JsonProperty("leagues")
 	private Leagues leagues;
 	@JsonIgnore
@@ -59,13 +60,13 @@ public class Country {
 	}
 
 	@JsonProperty("continent")
-	public Continent getContinent() {
-		return continent;
+	public Continents getContinents() {
+		return continents;
 	}
 
 	@JsonProperty("continent")
-	public void setContinent(Continent continent) {
-		this.continent = continent;
+	public void setContinents(Continents continents) {
+		this.continents = continents;
 	}
 
 	@JsonProperty("leagues")

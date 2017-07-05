@@ -112,7 +112,7 @@ public class APIClient {
 			public void serialize(Object value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
 			}
 		});
-		objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+		// objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 		objectMapper.enable(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT);
 		return objectMapper;
 	}

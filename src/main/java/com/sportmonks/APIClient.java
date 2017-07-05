@@ -1,7 +1,6 @@
 package com.sportmonks;
 
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
@@ -12,11 +11,9 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.ssl.TrustStrategy;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.sportmonks.endpoints.CommentariesEndPoint;
 import com.sportmonks.endpoints.ContinentsEndPoint;
@@ -47,74 +44,8 @@ public class APIClient {
 		// Hide constructor
 		this.apiToken = apiToken;
 
-		configureUnirest(createObjectMapper());
-
-	}
-
-	/**
-	 *
-	 * @param objectMapper
-	 */
-	private static void configureUnirest(final com.fasterxml.jackson.databind.ObjectMapper objectMapper) {
+		Unirest.setObjectMapper(createObjectMapper());
 		Unirest.setHttpClient(createSSLHttpClient());
-		Unirest.setObjectMapper(new com.mashape.unirest.http.ObjectMapper() {
-			@Override
-			public <T> T readValue(String value, Class<T> valueType) {
-				try {
-					return objectMapper.readValue(value, valueType);
-				} catch (IOException e) {
-					throw new UncheckedIOException(e);
-				}
-			}
-
-			@Override
-			public String writeValue(Object value) {
-				try {
-					return objectMapper.writeValueAsString(value);
-				} catch (JsonProcessingException e) {
-					throw new RuntimeException(e);
-				}
-			}
-		});
-	}
-
-	/**
-	 * @return
-	 */
-	private static HttpClient createSSLHttpClient() {
-
-		final TrustStrategy acceptingTrustStrategy = new TrustStrategy() {
-
-			@Override
-			public boolean isTrusted(final X509Certificate[] arg0, final String arg1) throws CertificateException {
-				return true;
-			}
-		};
-
-		SSLContext sslContext = null;
-		try {
-			sslContext = SSLContexts.custom().loadTrustMaterial(null, acceptingTrustStrategy).build();
-		} catch (final Exception e) {
-			System.out.println("Could not create SSLContext");
-		}
-
-		return HttpClientBuilder.create().setSSLContext(sslContext).build();
-	}
-
-	/**
-	 *
-	 * @return
-	 */
-	private static com.fasterxml.jackson.databind.ObjectMapper createObjectMapper() {
-		com.fasterxml.jackson.databind.ObjectMapper objectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
-		objectMapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>() {
-			@Override
-			public void serialize(Object value, JsonGenerator gen, SerializerProvider serializers) throws IOException, JsonProcessingException {
-			}
-		});
-		// objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-		objectMapper.enable(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT);
-		return objectMapper;
 	}
 
 	/**
@@ -295,6 +226,60 @@ public class APIClient {
 	 */
 	public String getApiToken() {
 		return apiToken;
+	}
+
+	/**
+	 * @return
+	 */
+	private HttpClient createSSLHttpClient() {
+
+		final TrustStrategy acceptingTrustStrategy = new TrustStrategy() {
+
+			@Override
+			public boolean isTrusted(final X509Certificate[] arg0, final String arg1) throws CertificateException {
+				return true;
+			}
+		};
+
+		SSLContext sslContext = null;
+		try {
+			sslContext = SSLContexts.custom().loadTrustMaterial(null, acceptingTrustStrategy).build();
+		} catch (final Exception e) {
+			System.out.println("Could not create SSLContext");
+		}
+
+		return HttpClientBuilder.create().setSSLContext(sslContext).build();
+	}
+
+	/**
+	 * @return
+	 */
+	private ObjectMapper createObjectMapper() {
+		final ObjectMapper objectMapper = new ObjectMapper() {
+			public final com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
+
+			@Override
+			public <T> T readValue(final String value, final Class<T> valueType) {
+				try {
+					jacksonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+					jacksonObjectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
+					return jacksonObjectMapper.readValue(value, valueType);
+				} catch (final IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+
+			@Override
+			public String writeValue(final Object value) {
+				try {
+					return jacksonObjectMapper.writeValueAsString(value);
+				} catch (final JsonProcessingException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		};
+
+		return objectMapper;
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Season;
+import com.sportmonks.data.structure.OneSeason;
 import com.sportmonks.data.structure.Seasons;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
@@ -107,15 +108,19 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 			}
 		}
 
-		final HttpResponse<Seasons> httpResponse = RestTool.get(BY_ID_URL, paramsMap, Seasons.class);
+		final HttpResponse<OneSeason> httpResponse = RestTool.get(BY_ID_URL, paramsMap, OneSeason.class);
 		if (httpResponse != null) {
-			final Seasons seasons = httpResponse.getBody();
-			final List<Season> data = seasons.getData();
-			if (data == null || data.isEmpty()) {
+			final OneSeason body = httpResponse.getBody();
+			if (body == null) {
 				throw new NotFoundException();
-			} else {
-				return data.get(0);
 			}
+
+			final Season season = body.getData();
+			if (season == null) {
+				throw new NotFoundException();
+			}
+
+			return season;
 		} else {
 			throw new NotFoundException();
 		}

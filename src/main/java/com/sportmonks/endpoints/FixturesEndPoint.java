@@ -8,7 +8,7 @@ import java.util.Map;
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Fixture;
 import com.sportmonks.data.structure.Fixtures;
-import com.sportmonks.exceptions.HaveToDefineValidDateException;
+import com.sportmonks.data.structure.OneFixture;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
@@ -45,11 +45,10 @@ public class FixturesEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 * @param url
 	 * @param params
 	 * @return
 	 */
-	private Fixture find(final String url, final FixturesEndPointParams params) throws NotFoundException {
+	private Fixture findUnique(final FixturesEndPointParams params) throws NotFoundException {
 
 		lastFixtureProxyCall = waitBeforeNextCall(lastFixtureProxyCall);
 
@@ -61,15 +60,18 @@ public class FixturesEndPoint extends AbstractEndPoint {
 			}
 		}
 
-		final HttpResponse<Fixtures> httpResponse = RestTool.get(BY_ID_URL, paramsMap, Fixtures.class);
+		final HttpResponse<OneFixture> httpResponse = RestTool.get(BY_ID_URL, paramsMap, OneFixture.class);
 		if (httpResponse != null) {
-			final Fixtures fixtures = httpResponse.getBody();
-			final List<Fixture> data = fixtures.getData();
-			if (data == null || data.isEmpty()) {
+			final OneFixture body = httpResponse.getBody();
+			if (body == null) {
 				throw new NotFoundException();
-			} else {
-				return data.get(0);
 			}
+
+			final Fixture fixture = body.getData();
+			if (fixture == null) {
+				throw new NotFoundException();
+			}
+			return fixture;
 		} else {
 			throw new NotFoundException();
 		}
@@ -87,42 +89,6 @@ public class FixturesEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 * @param date
-	 * @return
-	 * @throws NotFoundException
-	 */
-	public Fixture findByDate(final String date) throws NotFoundException {
-		final FixturesEndPointParams params = new FixturesEndPointParams();
-		params.setDate(date);
-		return findByDate(params);
-	}
-
-	/**
-	 * Liste de toutes les Fixturees autorisées avec les relations définies
-	 */
-	public Fixture findByDate(final FixturesEndPointParams params) throws NotFoundException {
-
-		if (!params.isValidDate()) {
-			throw new HaveToDefineValidDateException();
-		}
-
-		return find(BY_DATE_URL, params);
-	}
-
-	/**
-	* @param from
-	* @param to
-	* @return
-	* @throws NotFoundException
-	*/
-	public List<Fixture> findByDateRange(final String from, final String to) throws NotFoundException {
-		final FixturesEndPointParams params = new FixturesEndPointParams();
-		params.setBetweenFromDate(from);
-		params.setBetweenToDate(to);
-		return findSeverals(BY_DATE_RANGE_URL, params);
-	}
-
-	/**
 	 * Liste de toutes les Fixturees autorisées avec les relations définies
 	 */
 	public Fixture findOne(final FixturesEndPointParams params) throws NotFoundException {
@@ -131,7 +97,7 @@ public class FixturesEndPoint extends AbstractEndPoint {
 			throw new HaveToDefineValidIdException();
 		}
 
-		return find(BY_ID_URL, params);
+		return findUnique(params);
 	}
 
 	/**

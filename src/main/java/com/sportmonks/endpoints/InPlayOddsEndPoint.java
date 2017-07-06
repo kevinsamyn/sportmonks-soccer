@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Offer;
 import com.sportmonks.data.structure.InPlayOdds;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -25,15 +24,6 @@ public class InPlayOddsEndPoint extends AbstractEndPoint {
 
 	private InPlayOddsEndPoint(final Double hourRateLimit) {
 		super(hourRateLimit);
-	}
-
-	/**
-	 * Singleton
-	 *
-	 * @return
-	 */
-	public static InPlayOddsEndPoint getInstance() {
-		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**

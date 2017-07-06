@@ -89,7 +89,7 @@ public class APIClient {
 	 */
 	public CommentariesEndPoint getCommentariesEndPointInstance() {
 		checkInstance();
-		return CommentariesEndPoint.getInstance();
+		return CommentariesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class APIClient {
 	 */
 	public ContinentsEndPoint getContinentsEndPointInstance() {
 		checkInstance();
-		return ContinentsEndPoint.getInstance();
+		return ContinentsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -129,7 +129,7 @@ public class APIClient {
 	 */
 	public CountriesEndPoint getCountriesEndPointInstance() {
 		checkInstance();
-		return CountriesEndPoint.getInstance();
+		return CountriesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class APIClient {
 	 */
 	public FixturesEndPoint getFixturesEndPointInstance() {
 		checkInstance();
-		return FixturesEndPoint.getInstance();
+		return FixturesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class APIClient {
 	 */
 	public LeaguesEndPoint getLeaguesEndPointInstance() {
 		checkInstance();
-		return LeaguesEndPoint.getInstance();
+		return LeaguesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class APIClient {
 	 */
 	public LivescoresEndPoint getLivescoresEndPointInstance() {
 		checkInstance();
-		return LivescoresEndPoint.getInstance();
+		return LivescoresEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class APIClient {
 	 */
 	public PlayersEndPoint getPlayersEndPointInstance() {
 		checkInstance();
-		return PlayersEndPoint.getInstance();
+		return PlayersEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -229,7 +229,7 @@ public class APIClient {
 	 */
 	public PreMatchOddsEndPoint getPreMatchOddsEndPointInstance() {
 		checkInstance();
-		return PreMatchOddsEndPoint.getInstance();
+		return PreMatchOddsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -249,7 +249,7 @@ public class APIClient {
 	 */
 	public SeasonsEndPoint getSeasonsEndPointInstance() {
 		checkInstance();
-		return SeasonsEndPoint.getInstance();
+		return SeasonsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -269,7 +269,7 @@ public class APIClient {
 	 */
 	public StandingsEndPoint getStandingsProxyInstance() {
 		checkInstance();
-		return StandingsEndPoint.getInstance();
+		return StandingsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -289,7 +289,7 @@ public class APIClient {
 	 */
 	public TeamsEndPoint getTeamsEndPointInstance() {
 		checkInstance();
-		return TeamsEndPoint.getInstance();
+		return TeamsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -309,7 +309,7 @@ public class APIClient {
 	 */
 	public TvStationsEndPoint getTvStationsEndPointInstance() {
 		checkInstance();
-		return TvStationsEndPoint.getInstance();
+		return TvStationsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -329,7 +329,7 @@ public class APIClient {
 	 */
 	public VenuesEndPoint getVenuesEndPointInstance() {
 		checkInstance();
-		return VenuesEndPoint.getInstance();
+		return VenuesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**
@@ -349,7 +349,7 @@ public class APIClient {
 	 */
 	public VideoHighlightsEndPoint getVideoHighlightsEndPointInstance() {
 		checkInstance();
-		return VideoHighlightsEndPoint.getInstance();
+		return VideoHighlightsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**

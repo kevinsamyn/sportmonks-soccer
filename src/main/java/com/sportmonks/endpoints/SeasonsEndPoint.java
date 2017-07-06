@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Season;
 import com.sportmonks.data.structure.Seasons;
 import com.sportmonks.exceptions.NotFoundException;
@@ -27,18 +26,6 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 * Singleton
-	 *
-	 * @return
-	 */
-	public static SeasonsEndPoint getInstance() {
-		if (INSTANCE == null)
-			INSTANCE = new SeasonsEndPoint(APIClient.CLASSIC_PLAN_RATE_LIMIT);
-
-		return INSTANCE;
-	}
-
-	/**
 	 * Creation d'une instance avec une limite d'appel par heure personnalisée
 	 *
 	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
@@ -46,7 +33,10 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static SeasonsEndPoint getInstance(final Double customHourRateLimit) {
-		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+		if (INSTANCE == null)
+			INSTANCE = new SeasonsEndPoint(customHourRateLimit);
+
+		return INSTANCE;
 	}
 
 	/**

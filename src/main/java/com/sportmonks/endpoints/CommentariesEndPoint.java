@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Comment;
 import com.sportmonks.data.structure.Commentaries;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -26,15 +25,6 @@ public class CommentariesEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 * Singleton
-	 *
-	 * @return
-	 */
-	public static CommentariesEndPoint getInstance() {
-		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
-	}
-
-	/**
 	 * Creation d'une instance avec une limite d'appel par heure personnalisée
 	 *
 	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
@@ -42,9 +32,8 @@ public class CommentariesEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static CommentariesEndPoint getInstance(final Double customHourRateLimit) {
-		if (INSTANCE == null) {
+		if (INSTANCE == null)
 			INSTANCE = new CommentariesEndPoint(customHourRateLimit);
-		}
 
 		return INSTANCE;
 	}

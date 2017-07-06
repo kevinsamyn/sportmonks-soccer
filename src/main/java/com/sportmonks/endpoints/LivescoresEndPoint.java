@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Fixture;
 import com.sportmonks.data.structure.Livescores;
 import com.sportmonks.exceptions.NotFoundException;
@@ -25,15 +24,6 @@ public class LivescoresEndPoint extends AbstractEndPoint {
 
 	private LivescoresEndPoint(final Double hourRateLimit) {
 		super(hourRateLimit);
-	}
-
-	/**
-	 * Singleton
-	 *
-	 * @return
-	 */
-	public static LivescoresEndPoint getInstance() {
-		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**

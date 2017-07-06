@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.League;
 import com.sportmonks.data.structure.Leagues;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -23,15 +22,6 @@ public class LeaguesEndPoint extends AbstractEndPoint {
 
 	private LeaguesEndPoint(final Double hourRateLimit) {
 		super(hourRateLimit);
-	}
-
-	/**
-	 * Singleton
-	 *
-	 * @return
-	 */
-	public static LeaguesEndPoint getInstance() {
-		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**

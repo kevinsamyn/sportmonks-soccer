@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
-import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Fixture;
 import com.sportmonks.data.structure.Fixtures;
 import com.sportmonks.exceptions.HaveToDefineValidDateException;
@@ -28,15 +27,6 @@ public class FixturesEndPoint extends AbstractEndPoint {
 
 	private FixturesEndPoint(final Double hourRateLimit) {
 		super(hourRateLimit);
-	}
-
-	/**
-	 * Singleton
-	 *
-	 * @return
-	 */
-	public static FixturesEndPoint getInstance() {
-		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
 	}
 
 	/**

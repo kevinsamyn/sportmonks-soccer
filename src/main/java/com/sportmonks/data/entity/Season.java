@@ -12,11 +12,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.sportmonks.data.structure.Fixtures;
 import com.sportmonks.data.structure.Leagues;
 import com.sportmonks.data.structure.Results;
+import com.sportmonks.data.structure.Rounds;
 import com.sportmonks.data.structure.SeasonRelationships;
+import com.sportmonks.data.structure.Stages;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "type", "id", "name", "league_id", "is_current_season", "current_round_id", "current_stage_id", "league", "attributes", "fixtures",
-		"results", "relationships" })
+		"results", "relationships", "rounds", "stages" })
 public class Season {
 	@JsonProperty("id")
 	private String id;
@@ -42,6 +44,10 @@ public class Season {
 	private SeasonRelationships relationships;
 	@JsonProperty("fixtures")
 	private Fixtures fixtures;
+	@JsonProperty("rounds")
+	private Rounds rounds;
+	@JsonProperty("stages")
+	private Stages stages;
 
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
@@ -94,6 +100,26 @@ public class Season {
 	@JsonProperty("fixtures")
 	public void setFixtures(final Fixtures fixtures) {
 		this.fixtures = fixtures;
+	}
+
+	@JsonProperty("rounds")
+	public Rounds getRounds() {
+		return rounds;
+	}
+
+	@JsonProperty("rounds")
+	public void setRounds(final Rounds rounds) {
+		this.rounds = rounds;
+	}
+
+	@JsonProperty("stages")
+	public Stages getStages() {
+		return stages;
+	}
+
+	@JsonProperty("stages")
+	public void setStages(final Stages stages) {
+		this.stages = stages;
 	}
 
 	@JsonProperty("name")

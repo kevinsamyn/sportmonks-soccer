@@ -1,9 +1,9 @@
 package com.sportmonks.endpoints;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Player;
@@ -16,6 +16,8 @@ import com.sportmonks.tools.RestTool;
  * Created by kevin on 28/05/2016.
  */
 public class PlayersEndPoint extends AbstractEndPoint {
+
+	private static final Logger LOGGER = Logger.getLogger(PlayersEndPoint.class);
 
 	private static final String BASE_URL = AbstractEndPoint.API_URL + AbstractEndPoint.VERSION + "/players";
 	private static final String BY_ID_URL = BASE_URL + "/{playerId}";
@@ -40,11 +42,15 @@ public class PlayersEndPoint extends AbstractEndPoint {
 		return INSTANCE;
 	}
 
+	/**
+	 *
+	 * @param url
+	 * @param params
+	 * @return
+	 */
 	private Player findUnique(final String url, final PlayersEndPointParams params) {
 
 		lastCall = waitBeforeNextCall(lastCall);
-
-		final List<Player> response = new ArrayList<>();
 
 		final Map<String, String> paramsMap = new HashMap<>();
 		if (params != null) {
@@ -55,11 +61,14 @@ public class PlayersEndPoint extends AbstractEndPoint {
 		}
 
 		final HttpResponse<Players> httpResponse = RestTool.get(url, paramsMap, Players.class);
-		final Players body = httpResponse.getBody();
-		if (body != null) {
-			return body.getData();
+		if (httpResponse != null) {
+			final Players body = httpResponse.getBody();
+			if (body != null) {
+				return body.getData();
+			}
+		} else {
+			LOGGER.error("Failed to call : " + url);
 		}
-
 		return null;
 	}
 
@@ -85,6 +94,7 @@ public class PlayersEndPoint extends AbstractEndPoint {
 
 		final Player player = findUnique(BY_ID_URL, params);
 		if (null == player) {
+			LOGGER.error("Cannot find sportmonks player by id : " + params.getPlayerId());
 			throw new NotFoundException();
 		}
 

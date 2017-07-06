@@ -101,7 +101,7 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 		if (params != null) {
 			paramsMap.put("includes", params.getRelations());
 			if (params.isValidId()) {
-				paramsMap.put("id", params.getSeasonId().toString());
+				paramsMap.put("seasonId", params.getSeasonId().toString());
 			}
 		}
 

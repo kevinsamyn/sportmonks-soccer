@@ -6,7 +6,7 @@ import java.util.logging.Logger;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Player;
-import com.sportmonks.data.structure.Players;
+import com.sportmonks.data.structure.OnePlayer;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
@@ -49,7 +49,7 @@ public class PlayersEndPoint extends AbstractEndPoint {
 	 * @param params
 	 * @return
 	 */
-	private Player findUnique(final String url, final PlayersEndPointParams params) {
+	private Player findUnique(final String url, final PlayersEndPointParams params) throws NotFoundException {
 
 		lastCall = waitBeforeNextCall(lastCall);
 
@@ -61,12 +61,18 @@ public class PlayersEndPoint extends AbstractEndPoint {
 			}
 		}
 
-		final HttpResponse<Players> httpResponse = RestTool.get(url, paramsMap, Players.class);
+		final HttpResponse<OnePlayer> httpResponse = RestTool.get(url, paramsMap, OnePlayer.class);
 		if (httpResponse != null) {
-			final Players body = httpResponse.getBody();
-			if (body != null) {
-				return body.getData();
+			final OnePlayer body = httpResponse.getBody();
+			if (body == null) {
+				throw new NotFoundException();
 			}
+			final Player player = body.getData();
+			if (player == null) {
+				throw new NotFoundException();
+			}
+
+			return player;
 		} else {
 			LOGGER.warning("Failed to call : " + url);
 		}

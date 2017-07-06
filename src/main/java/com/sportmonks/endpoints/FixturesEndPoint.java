@@ -49,7 +49,7 @@ public class FixturesEndPoint extends AbstractEndPoint {
 	 * @param params
 	 * @return
 	 */
-	private Fixture find(final String url, final FixturesEndPointParams params) {
+	private Fixture find(final String url, final FixturesEndPointParams params) throws NotFoundException {
 
 		lastFixtureProxyCall = waitBeforeNextCall(lastFixtureProxyCall);
 
@@ -61,11 +61,17 @@ public class FixturesEndPoint extends AbstractEndPoint {
 			}
 		}
 
-		final HttpResponse<Fixture> httpResponse = RestTool.get(url, paramsMap, Fixture.class);
-		try {
-			return httpResponse.getBody();
-		} catch (Exception e) {
-			return null;
+		final HttpResponse<Fixtures> httpResponse = RestTool.get(BY_ID_URL, paramsMap, Fixtures.class);
+		if (httpResponse != null) {
+			final Fixtures fixtures = httpResponse.getBody();
+			final List<Fixture> data = fixtures.getData();
+			if (data == null || data.isEmpty()) {
+				throw new NotFoundException();
+			} else {
+				return data.get(0);
+			}
+		} else {
+			throw new NotFoundException();
 		}
 	}
 
@@ -94,7 +100,7 @@ public class FixturesEndPoint extends AbstractEndPoint {
 	/**
 	 * Liste de toutes les Fixturees autorisées avec les relations définies
 	 */
-	public Fixture findByDate(final FixturesEndPointParams params) {
+	public Fixture findByDate(final FixturesEndPointParams params) throws NotFoundException {
 
 		if (!params.isValidDate()) {
 			throw new HaveToDefineValidDateException();
@@ -119,7 +125,7 @@ public class FixturesEndPoint extends AbstractEndPoint {
 	/**
 	 * Liste de toutes les Fixturees autorisées avec les relations définies
 	 */
-	public Fixture findOne(final FixturesEndPointParams params) {
+	public Fixture findOne(final FixturesEndPointParams params) throws NotFoundException {
 
 		if (!params.isValidId()) {
 			throw new HaveToDefineValidIdException();

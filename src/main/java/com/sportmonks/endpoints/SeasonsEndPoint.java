@@ -95,7 +95,7 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 	 * @param params
 	 * @return
 	 */
-	public Season findOne(final SeasonsEndPointParams params) {
+	public Season findOne(final SeasonsEndPointParams params) throws NotFoundException {
 
 		lastSeasonProxyCall = waitBeforeNextCall(lastSeasonProxyCall);
 
@@ -107,9 +107,18 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 			}
 		}
 
-		final HttpResponse<Season> httpResponse = RestTool.get(BY_ID_URL, paramsMap, Season.class);
-
-		return httpResponse.getBody();
+		final HttpResponse<Seasons> httpResponse = RestTool.get(BY_ID_URL, paramsMap, Seasons.class);
+		if (httpResponse != null) {
+			final Seasons seasons = httpResponse.getBody();
+			final List<Season> data = seasons.getData();
+			if (data == null || data.isEmpty()) {
+				throw new NotFoundException();
+			} else {
+				return data.get(0);
+			}
+		} else {
+			throw new NotFoundException();
+		}
 	}
 
 	/**

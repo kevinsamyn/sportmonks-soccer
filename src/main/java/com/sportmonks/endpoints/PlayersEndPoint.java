@@ -2,8 +2,7 @@ package com.sportmonks.endpoints;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Player;
@@ -17,7 +16,7 @@ import com.sportmonks.tools.RestTool;
  */
 public class PlayersEndPoint extends AbstractEndPoint {
 
-	private static final Logger LOGGER = Logger.getLogger(PlayersEndPoint.class);
+	private static final Logger LOGGER = Logger.getLogger(PlayersEndPoint.class.getName());
 
 	private static final String BASE_URL = AbstractEndPoint.API_URL + AbstractEndPoint.VERSION + "/players";
 	private static final String BY_ID_URL = BASE_URL + "/{playerId}";
@@ -67,7 +66,7 @@ public class PlayersEndPoint extends AbstractEndPoint {
 				return body.getData();
 			}
 		} else {
-			LOGGER.error("Failed to call : " + url);
+			LOGGER.warning("Failed to call : " + url);
 		}
 		return null;
 	}
@@ -94,7 +93,7 @@ public class PlayersEndPoint extends AbstractEndPoint {
 
 		final Player player = findUnique(BY_ID_URL, params);
 		if (null == player) {
-			LOGGER.error("Cannot find sportmonks player by id : " + params.getPlayerId());
+			LOGGER.warning("Cannot find sportmonks player by id : " + params.getPlayerId());
 			throw new NotFoundException();
 		}
 

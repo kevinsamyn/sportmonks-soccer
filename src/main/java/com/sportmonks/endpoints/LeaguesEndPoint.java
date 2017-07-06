@@ -8,6 +8,7 @@ import java.util.Map;
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.League;
 import com.sportmonks.data.structure.Leagues;
+import com.sportmonks.data.structure.OneLeague;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
@@ -15,10 +16,10 @@ import com.sportmonks.tools.RestTool;
 public class LeaguesEndPoint extends AbstractEndPoint {
 
 	private static final String BASE_URL = AbstractEndPoint.API_URL + AbstractEndPoint.VERSION + "/leagues";
-	private static final String BY_ID_URL = BASE_URL + "/{leagueId}";
+	private static final String BY_ID_URL = BASE_URL + "/{id}";
 	private static LeaguesEndPoint INSTANCE;
 
-	private long lastLeagueProxyCall = 0;
+	private long lastCall = 0;
 
 	private LeaguesEndPoint(final Double hourRateLimit) {
 		super(hourRateLimit);
@@ -55,12 +56,12 @@ public class LeaguesEndPoint extends AbstractEndPoint {
 		if (null != params) {
 			params.setLeagueId(null);
 		}
-		return find(BASE_URL, params);
+		return findSeverals(BASE_URL, params);
 	}
 
-	private List<League> find(final String url, final LeaguesEndPointParams params) {
+	private List<League> findSeverals(final String url, final LeaguesEndPointParams params) {
 
-		lastLeagueProxyCall = waitBeforeNextCall(lastLeagueProxyCall);
+		lastCall = waitBeforeNextCall(lastCall);
 
 		final List<League> response = new ArrayList<>();
 
@@ -68,7 +69,7 @@ public class LeaguesEndPoint extends AbstractEndPoint {
 		if (params != null) {
 			paramsMap.put("includes", params.getRelations());
 			if (params.isValidId()) {
-				paramsMap.put("leagueId", params.getLeagueId().toString());
+				paramsMap.put("id", params.getLeagueId().toString());
 			}
 		}
 
@@ -79,6 +80,31 @@ public class LeaguesEndPoint extends AbstractEndPoint {
 		}
 
 		return response;
+	}
+
+	private League findUnique(final LeaguesEndPointParams params) throws NotFoundException {
+
+		lastCall = waitBeforeNextCall(lastCall);
+
+		final Map<String, String> paramsMap = new HashMap<>();
+		if (params != null) {
+			paramsMap.put("includes", params.getRelations());
+			if (params.isValidId()) {
+				paramsMap.put("id", String.valueOf(params.getLeagueId()));
+			}
+		}
+
+		final HttpResponse<OneLeague> httpResponse = RestTool.get(BY_ID_URL, paramsMap, OneLeague.class);
+		final OneLeague body = httpResponse.getBody();
+		if (body == null) {
+			throw new NotFoundException();
+		}
+		final League league = body.getData();
+		if (league == null) {
+			throw new NotFoundException();
+		}
+
+		return league;
 	}
 
 	/**
@@ -101,12 +127,7 @@ public class LeaguesEndPoint extends AbstractEndPoint {
 			throw new HaveToDefineValidIdException();
 		}
 
-		final List<League> all = find(BY_ID_URL, params);
-		if (all.isEmpty()) {
-			throw new NotFoundException();
-		}
-
-		return all.get(0);
+		return findUnique(params);
 	}
 
 	/**

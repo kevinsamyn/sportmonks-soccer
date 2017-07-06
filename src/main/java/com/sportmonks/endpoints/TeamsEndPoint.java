@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Team;
+import com.sportmonks.data.structure.OneTeam;
 import com.sportmonks.data.structure.Teams;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
 import com.sportmonks.exceptions.NotFoundException;
@@ -67,7 +68,7 @@ public class TeamsEndPoint extends AbstractEndPoint {
 			throw new HaveToDefineValidIdException();
 		}
 
-		return findUnique(BY_ID_URL, params);
+		return findUnique(params);
 	}
 
 	/**
@@ -127,11 +128,10 @@ public class TeamsEndPoint extends AbstractEndPoint {
 	/**
 	 * Retourne un résultat unique
 	 *
-	 * @param url
 	 * @param params
 	 * @return
 	 */
-	private Team findUnique(final String url, final TeamsEndPointParams params) {
+	private Team findUnique(final TeamsEndPointParams params) throws NotFoundException {
 
 		lastTeamProxyCall = waitBeforeNextCall(lastTeamProxyCall);
 
@@ -143,9 +143,18 @@ public class TeamsEndPoint extends AbstractEndPoint {
 			}
 		}
 
-		final HttpResponse<Team> httpResponse = RestTool.get(url, paramsMap, Team.class);
 
-		return httpResponse.getBody();
+		final HttpResponse<OneTeam> httpResponse = RestTool.get(BY_ID_URL, paramsMap, OneTeam.class);
+		final OneTeam body = httpResponse.getBody();
+		if (body == null) {
+			throw new NotFoundException();
+		}
+		final Team league = body.getData();
+		if (league == null) {
+			throw new NotFoundException();
+		}
+
+		return league;
 	}
 
 	/**

@@ -8,6 +8,7 @@ import java.util.Map;
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Country;
 import com.sportmonks.data.structure.Countries;
+import com.sportmonks.data.structure.OneCountry;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
@@ -21,7 +22,7 @@ public class CountriesEndPoint extends AbstractEndPoint {
 	private static final String BY_ID_URL = BASE_URL + "/{id}";
 	private static CountriesEndPoint INSTANCE;
 
-	private long lastCountryProxyCall = 0;
+	private long lastCall = 0;
 
 	private CountriesEndPoint(final Double hourRateLimit) {
 		super(hourRateLimit);
@@ -58,19 +59,19 @@ public class CountriesEndPoint extends AbstractEndPoint {
 		if (null != params) {
 			params.setCountryId(null);
 		}
-		return find(BASE_URL, params);
+		return findSeverals(BASE_URL, params);
 	}
 
-	private List<Country> find(final String url, final CountriesEndPointParams params) {
+	private List<Country> findSeverals(final String url, final CountriesEndPointParams params) {
 
-		lastCountryProxyCall = waitBeforeNextCall(lastCountryProxyCall);
+		lastCall = waitBeforeNextCall(lastCall);
 
 		final List<Country> response = new ArrayList<>();
 
 		final Map<String, String> paramsMap = new HashMap<>();
 		if (params != null) {
 			paramsMap.put("includes", params.getRelations());
-			if (params.isValidCountryId()) {
+			if (params.isValidId()) {
 				paramsMap.put("id", params.getCountryId().toString());
 			}
 		}
@@ -82,6 +83,31 @@ public class CountriesEndPoint extends AbstractEndPoint {
 		}
 
 		return response;
+	}
+
+	private Country findUnique(final CountriesEndPointParams params) throws NotFoundException {
+
+		lastCall = waitBeforeNextCall(lastCall);
+
+		final Map<String, String> paramsMap = new HashMap<>();
+		if (params != null) {
+			paramsMap.put("includes", params.getRelations());
+			if (params.isValidId()) {
+				paramsMap.put("id", String.valueOf(params.getCountryId()));
+			}
+		}
+
+		final HttpResponse<OneCountry> httpResponse = RestTool.get(BY_ID_URL, paramsMap, OneCountry.class);
+		final OneCountry body = httpResponse.getBody();
+		if (body == null) {
+			throw new NotFoundException();
+		}
+		final Country country = body.getData();
+		if (country == null) {
+			throw new NotFoundException();
+		}
+
+		return country;
 	}
 
 	/**
@@ -100,16 +126,11 @@ public class CountriesEndPoint extends AbstractEndPoint {
 	 */
 	public Country findOne(final CountriesEndPointParams params) throws NotFoundException {
 
-		if (!params.isValidCountryId()) {
+		if (!params.isValidId()) {
 			throw new HaveToDefineValidIdException();
 		}
 
-		final List<Country> all = find(BY_ID_URL, params);
-		if (all.isEmpty()) {
-			throw new NotFoundException();
-		}
-
-		return all.get(0);
+		return findUnique(params);
 	}
 
 	/**

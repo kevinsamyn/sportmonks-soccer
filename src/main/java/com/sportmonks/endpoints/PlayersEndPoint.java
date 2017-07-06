@@ -19,7 +19,7 @@ public class PlayersEndPoint extends AbstractEndPoint {
 	private static final Logger LOGGER = Logger.getLogger(PlayersEndPoint.class.getName());
 
 	private static final String BASE_URL = AbstractEndPoint.API_URL + AbstractEndPoint.VERSION + "/players";
-	private static final String BY_ID_URL = BASE_URL + "/{playerId}";
+	private static final String BY_ID_URL = BASE_URL + "/{id}";
 	private static PlayersEndPoint INSTANCE;
 
 	private long lastCall = 0;
@@ -57,7 +57,7 @@ public class PlayersEndPoint extends AbstractEndPoint {
 		if (params != null) {
 			paramsMap.put("includes", params.getRelations());
 			if (params.isValidId()) {
-				paramsMap.put("playerId", String.valueOf(params.getPlayerId()));
+				paramsMap.put("id", String.valueOf(params.getPlayerId()));
 			}
 		}
 

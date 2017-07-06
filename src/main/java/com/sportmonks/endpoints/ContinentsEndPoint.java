@@ -8,6 +8,7 @@ import java.util.Map;
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Continent;
 import com.sportmonks.data.structure.Continents;
+import com.sportmonks.data.structure.OneContinent;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
@@ -58,10 +59,10 @@ public class ContinentsEndPoint extends AbstractEndPoint {
 		if (null != params) {
 			params.setContinentId(null);
 		}
-		return find(BASE_URL, params);
+		return findSeverals(BASE_URL, params);
 	}
 
-	private List<Continent> find(final String url, final ContinentsEndPointParams params) {
+	private List<Continent> findSeverals(final String url, final ContinentsEndPointParams params) {
 
 		lastCall = waitBeforeNextCall(lastCall);
 
@@ -84,6 +85,31 @@ public class ContinentsEndPoint extends AbstractEndPoint {
 		return response;
 	}
 
+	private Continent findUnique(final ContinentsEndPointParams params) throws NotFoundException {
+
+		lastCall = waitBeforeNextCall(lastCall);
+
+		final Map<String, String> paramsMap = new HashMap<>();
+		if (params != null) {
+			paramsMap.put("includes", params.getRelations());
+			if (params.isValidId()) {
+				paramsMap.put("id", String.valueOf(params.getContinentId()));
+			}
+		}
+
+		final HttpResponse<OneContinent> httpResponse = RestTool.get(BY_ID_URL, paramsMap, OneContinent.class);
+		final OneContinent body = httpResponse.getBody();
+		if (body == null) {
+			throw new NotFoundException();
+		}
+		final Continent continent = body.getData();
+		if (continent == null) {
+			throw new NotFoundException();
+		}
+
+		return continent;
+	}
+
 	/**
 	 * @param ContinentId
 	 * @return
@@ -104,12 +130,7 @@ public class ContinentsEndPoint extends AbstractEndPoint {
 			throw new HaveToDefineValidIdException();
 		}
 
-		final List<Continent> all = find(BY_ID_URL, params);
-		if (all.isEmpty()) {
-			throw new NotFoundException();
-		}
-
-		return all.get(0);
+		return findUnique(params);
 	}
 
 	/**

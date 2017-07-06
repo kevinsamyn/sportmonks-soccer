@@ -20,7 +20,7 @@ public class CountriesEndPointParams extends AbstractEndPointParams {
 		return StringUtils.join(relations, ",");
 	}
 
-	public boolean isValidCountryId() {
+	public boolean isValidId() {
 		return countryId != null && countryId > 0;
 	}
 

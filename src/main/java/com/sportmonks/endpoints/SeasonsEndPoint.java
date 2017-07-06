@@ -9,6 +9,7 @@ import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Season;
 import com.sportmonks.data.structure.OneSeason;
 import com.sportmonks.data.structure.Seasons;
+import com.sportmonks.exceptions.HaveToDefineValidIdException;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
 
@@ -18,9 +19,9 @@ import com.sportmonks.tools.RestTool;
 public class SeasonsEndPoint extends AbstractEndPoint {
 
 	private static final String BASE_URL = AbstractEndPoint.API_URL + AbstractEndPoint.VERSION + "/seasons";
-	private static final String BY_ID_URL = BASE_URL + "/{seasonId}";
+	private static final String BY_ID_URL = BASE_URL + "/{id}";
 	private static SeasonsEndPoint INSTANCE;
-	private long lastSeasonProxyCall = 0;
+	private long lastCall = 0;
 
 	private SeasonsEndPoint(final Double hourRateLimit) {
 		super(hourRateLimit);
@@ -56,18 +57,18 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 		if (null != params) {
 			params.setSeasonId(null);
 		}
-		return find(BASE_URL, params);
+		return findSeverals(BASE_URL, params);
 	}
 
-	private List<Season> find(final String url, final SeasonsEndPointParams params) {
+	private List<Season> findSeverals(final String url, final SeasonsEndPointParams params) {
 
-		lastSeasonProxyCall = waitBeforeNextCall(lastSeasonProxyCall);
+		lastCall = waitBeforeNextCall(lastCall);
 
 		final Map<String, String> paramsMap = new HashMap<>();
 		if (params != null) {
 			paramsMap.put("includes", params.getRelations());
 			if (params.isValidId()) {
-				paramsMap.put("seasonId", params.getSeasonId().toString());
+				paramsMap.put("id", params.getSeasonId().toString());
 			}
 		}
 
@@ -84,10 +85,23 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 	 * @return
 	 * @throws NotFoundException
 	 */
+	public Season findOne(final SeasonsEndPointParams params) throws NotFoundException {
+
+		if (!params.isValidId()) {
+			throw new HaveToDefineValidIdException();
+		}
+		return findUnique(params);
+	}
+
+	/**
+	 * @param seasonId
+	 * @return
+	 * @throws NotFoundException
+	 */
 	public Season findOne(final Long seasonId) throws NotFoundException {
 		final SeasonsEndPointParams params = new SeasonsEndPointParams();
 		params.setSeasonId(seasonId);
-		return findOne(params);
+		return findUnique(params);
 	}
 
 	/**
@@ -96,15 +110,15 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 	 * @param params
 	 * @return
 	 */
-	public Season findOne(final SeasonsEndPointParams params) throws NotFoundException {
+	public Season findUnique(final SeasonsEndPointParams params) throws NotFoundException {
 
-		lastSeasonProxyCall = waitBeforeNextCall(lastSeasonProxyCall);
+		lastCall = waitBeforeNextCall(lastCall);
 
 		final Map<String, String> paramsMap = new HashMap<>();
 		if (params != null) {
 			paramsMap.put("includes", params.getRelations());
 			if (params.isValidId()) {
-				paramsMap.put("seasonId", params.getSeasonId().toString());
+				paramsMap.put("id", params.getSeasonId().toString());
 			}
 		}
 

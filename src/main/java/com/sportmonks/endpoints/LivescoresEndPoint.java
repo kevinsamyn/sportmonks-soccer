@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Fixture;
 import com.sportmonks.data.structure.Livescores;
 import com.sportmonks.exceptions.NotFoundException;
@@ -22,8 +23,8 @@ public class LivescoresEndPoint extends AbstractEndPoint {
 	private static LivescoresEndPoint INSTANCE;
 	private long lastLivescoreProxyCall = 0;
 
-	private LivescoresEndPoint() {
-		// Hide constructor
+	private LivescoresEndPoint(final Double hourRateLimit) {
+		super(hourRateLimit);
 	}
 
 	/**
@@ -32,8 +33,19 @@ public class LivescoresEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static LivescoresEndPoint getInstance() {
+		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+	}
+
+	/**
+	 * Creation d'une instance avec une limite d'appel par heure personnalisée
+	 *
+	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
+	 *
+	 * @return
+	 */
+	public static LivescoresEndPoint getInstance(final Double customHourRateLimit) {
 		if (INSTANCE == null) {
-			INSTANCE = new LivescoresEndPoint();
+			INSTANCE = new LivescoresEndPoint(customHourRateLimit);
 		}
 
 		return INSTANCE;

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Offer;
 import com.sportmonks.data.structure.InPlayOdds;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -22,8 +23,8 @@ public class InPlayOddsEndPoint extends AbstractEndPoint {
 	private static InPlayOddsEndPoint INSTANCE;
 	private long lastOddProxyCall = 0;
 
-	private InPlayOddsEndPoint() {
-		// Hide constructor
+	private InPlayOddsEndPoint(final Double hourRateLimit) {
+		super(hourRateLimit);
 	}
 
 	/**
@@ -32,8 +33,19 @@ public class InPlayOddsEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static InPlayOddsEndPoint getInstance() {
+		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+	}
+
+	/**
+	 * Creation d'une instance avec une limite d'appel par heure personnalisée
+	 *
+	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
+	 *
+	 * @return
+	 */
+	public static InPlayOddsEndPoint getInstance(final Double customHourRateLimit) {
 		if (INSTANCE == null) {
-			INSTANCE = new InPlayOddsEndPoint();
+			INSTANCE = new InPlayOddsEndPoint(customHourRateLimit);
 		}
 
 		return INSTANCE;

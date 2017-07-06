@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Country;
 import com.sportmonks.data.structure.Countries;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -23,8 +24,8 @@ public class CountriesEndPoint extends AbstractEndPoint {
 
 	private long lastCountryProxyCall = 0;
 
-	private CountriesEndPoint() {
-		// Hide constructor
+	private CountriesEndPoint(final Double hourRateLimit) {
+		super(hourRateLimit);
 	}
 
 	/**
@@ -33,8 +34,19 @@ public class CountriesEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static CountriesEndPoint getInstance() {
+		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+	}
+
+	/**
+	 * Creation d'une instance avec une limite d'appel par heure personnalisée
+	 *
+	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
+	 *
+	 * @return
+	 */
+	public static CountriesEndPoint getInstance(final Double customHourRateLimit) {
 		if (INSTANCE == null) {
-			INSTANCE = new CountriesEndPoint();
+			INSTANCE = new CountriesEndPoint(customHourRateLimit);
 		}
 
 		return INSTANCE;

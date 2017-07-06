@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Fixture;
 import com.sportmonks.data.structure.Fixtures;
 import com.sportmonks.exceptions.HaveToDefineValidDateException;
@@ -25,8 +26,8 @@ public class FixturesEndPoint extends AbstractEndPoint {
 	private static FixturesEndPoint INSTANCE;
 	private long lastFixtureProxyCall = 0;
 
-	private FixturesEndPoint() {
-		// Hide constructor
+	private FixturesEndPoint(final Double hourRateLimit) {
+		super(hourRateLimit);
 	}
 
 	/**
@@ -35,8 +36,19 @@ public class FixturesEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static FixturesEndPoint getInstance() {
+		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+	}
+
+	/**
+	 * Creation d'une instance avec une limite d'appel par heure personnalisée
+	 *
+	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
+	 *
+	 * @return
+	 */
+	public static FixturesEndPoint getInstance(final Double customHourRateLimit) {
 		if (INSTANCE == null) {
-			INSTANCE = new FixturesEndPoint();
+			INSTANCE = new FixturesEndPoint(customHourRateLimit);
 		}
 
 		return INSTANCE;

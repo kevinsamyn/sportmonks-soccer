@@ -12,8 +12,18 @@ public abstract class AbstractEndPoint {
 
 	private static final double SECOND_IN_MILLISECOND = 1000.0;
 	private static final double HOUR_IN_SECOND = 3600.0;
-	private static final double CALL_BY_HOUR = 1000.0;
-	private static final double TIME_BETWEEN_TWO_CALLS = Math.ceil(HOUR_IN_SECOND / CALL_BY_HOUR * SECOND_IN_MILLISECOND);
+
+	private final double timeBetweenTwoCalls;
+	private final double hourRateLimit;
+
+	/**
+	 *
+	 * @param hourRateLimit
+	 */
+	public AbstractEndPoint(final Double hourRateLimit) {
+		this.hourRateLimit = hourRateLimit;
+		this.timeBetweenTwoCalls = Math.ceil(HOUR_IN_SECOND / this.hourRateLimit * SECOND_IN_MILLISECOND);
+	}
 
 	/**
 	 * Permet de respecter le delai entre chaque d'appel du end point
@@ -21,7 +31,7 @@ public abstract class AbstractEndPoint {
 	protected long waitBeforeNextCall(long lastProxyCall) {
 		synchronized (this) {
 			try {
-				while (System.currentTimeMillis() - lastProxyCall <= TIME_BETWEEN_TWO_CALLS) {
+				while (System.currentTimeMillis() - lastProxyCall <= timeBetweenTwoCalls) {
 					TimeUnit.MILLISECONDS.sleep(100);
 
 				}

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Venue;
 import com.sportmonks.data.structure.Venues;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -23,8 +24,8 @@ public class VenuesEndPoint extends AbstractEndPoint {
 
 	private long lastCall = 0;
 
-	private VenuesEndPoint() {
-		// Hide constructor
+	private VenuesEndPoint(final Double hourRateLimit) {
+		super(hourRateLimit);
 	}
 
 	/**
@@ -33,8 +34,19 @@ public class VenuesEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static VenuesEndPoint getInstance() {
+		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+	}
+
+	/**
+	 * Creation d'une instance avec une limite d'appel par heure personnalisée
+	 *
+	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
+	 *
+	 * @return
+	 */
+	public static VenuesEndPoint getInstance(final Double customHourRateLimit) {
 		if (INSTANCE == null) {
-			INSTANCE = new VenuesEndPoint();
+			INSTANCE = new VenuesEndPoint(customHourRateLimit);
 		}
 
 		return INSTANCE;

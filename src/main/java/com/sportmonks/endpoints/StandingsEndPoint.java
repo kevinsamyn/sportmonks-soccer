@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.StandingGroup;
 import com.sportmonks.data.structure.Standings;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -21,8 +22,8 @@ public class StandingsEndPoint extends AbstractEndPoint {
 	private static StandingsEndPoint INSTANCE;
 	private long lastStandingProxyCall = 0;
 
-	private StandingsEndPoint() {
-		// Hide constructor
+	private StandingsEndPoint(final Double hourRateLimit) {
+		super(hourRateLimit);
 	}
 
 	/**
@@ -31,8 +32,19 @@ public class StandingsEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static StandingsEndPoint getInstance() {
+		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+	}
+
+	/**
+	 * Creation d'une instance avec une limite d'appel par heure personnalisée
+	 *
+	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
+	 *
+	 * @return
+	 */
+	public static StandingsEndPoint getInstance(final Double customHourRateLimit) {
 		if (INSTANCE == null) {
-			INSTANCE = new StandingsEndPoint();
+			INSTANCE = new StandingsEndPoint(customHourRateLimit);
 		}
 
 		return INSTANCE;

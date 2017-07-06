@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.Team;
 import com.sportmonks.data.structure.Teams;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -24,8 +25,8 @@ public class TeamsEndPoint extends AbstractEndPoint {
 	private static TeamsEndPoint INSTANCE;
 	private long lastTeamProxyCall = 0;
 
-	private TeamsEndPoint() {
-		// Hide constructor
+	private TeamsEndPoint(final Double hourRateLimit) {
+		super(hourRateLimit);
 	}
 
 	/**
@@ -34,8 +35,19 @@ public class TeamsEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static TeamsEndPoint getInstance() {
+		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+	}
+
+	/**
+	 * Creation d'une instance avec une limite d'appel par heure personnalisée
+	 *
+	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
+	 *
+	 * @return
+	 */
+	public static TeamsEndPoint getInstance(final Double customHourRateLimit) {
 		if (INSTANCE == null) {
-			INSTANCE = new TeamsEndPoint();
+			INSTANCE = new TeamsEndPoint(customHourRateLimit);
 		}
 
 		return INSTANCE;

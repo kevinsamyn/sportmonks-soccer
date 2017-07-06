@@ -33,6 +33,9 @@ import com.sportmonks.exceptions.InvalidServiceInstanceException;
 
 public class APIClient {
 
+	public static final Double FREE_PLAN_RATE_LIMIT = 180.0;
+	public static final Double CLASSIC_PLAN_RATE_LIMIT = 1500.0;
+
 	private static APIClient INSTANCE;
 	private String apiToken = null;
 
@@ -90,6 +93,16 @@ public class APIClient {
 	}
 
 	/**
+	 *
+	 * @param hourRateLimit
+	 * @return
+	 */
+	public CommentariesEndPoint getCommentariesEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return CommentariesEndPoint.getInstance(hourRateLimit);
+	}
+
+	/**
 	 * Retourne une instance du proxy Competition
 	 *
 	 * @return
@@ -104,9 +117,29 @@ public class APIClient {
 	 *
 	 * @return
 	 */
+	public ContinentsEndPoint getContinentsEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return ContinentsEndPoint.getInstance(hourRateLimit);
+	}
+
+	/**
+	 * Retourne une instance du proxy Competition
+	 *
+	 * @return
+	 */
 	public CountriesEndPoint getCountriesEndPointInstance() {
 		checkInstance();
 		return CountriesEndPoint.getInstance();
+	}
+
+	/**
+	 * Retourne une instance du proxy Competition
+	 *
+	 * @return
+	 */
+	public CountriesEndPoint getCountriesEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return CountriesEndPoint.getInstance(hourRateLimit);
 	}
 
 	/**
@@ -120,6 +153,16 @@ public class APIClient {
 	}
 
 	/**
+	 * Retourne une instance du proxy Fixture
+	 *
+	 * @return
+	 */
+	public FixturesEndPoint getFixturesEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return FixturesEndPoint.getInstance(hourRateLimit);
+	}
+
+	/**
 	 * Retourne une instance du proxy Competition
 	 *
 	 * @return
@@ -127,6 +170,16 @@ public class APIClient {
 	public LeaguesEndPoint getLeaguesEndPointInstance() {
 		checkInstance();
 		return LeaguesEndPoint.getInstance();
+	}
+
+	/**
+	 * Retourne une instance du proxy Competition
+	 *
+	 * @return
+	 */
+	public LeaguesEndPoint getLeaguesEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return LeaguesEndPoint.getInstance(hourRateLimit);
 	}
 
 	/**
@@ -140,6 +193,16 @@ public class APIClient {
 	}
 
 	/**
+	 * Retourne une instance du proxy Livescores
+	 *
+	 * @return
+	 */
+	public LivescoresEndPoint getLivescoresEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return LivescoresEndPoint.getInstance(hourRateLimit);
+	}
+
+	/**
 	 * Retourne une instance du proxy Player
 	 *
 	 * @return
@@ -147,6 +210,16 @@ public class APIClient {
 	public PlayersEndPoint getPlayersEndPointInstance() {
 		checkInstance();
 		return PlayersEndPoint.getInstance();
+	}
+
+	/**
+	 * Retourne une instance du proxy Player
+	 *
+	 * @return
+	 */
+	public PlayersEndPoint getPlayersEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return PlayersEndPoint.getInstance(hourRateLimit);
 	}
 
 	/**
@@ -160,6 +233,16 @@ public class APIClient {
 	}
 
 	/**
+	 * Retourne une instance du proxy PreMatchOddsEndPoint
+	 *
+	 * @return
+	 */
+	public PreMatchOddsEndPoint getPreMatchOddsEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return PreMatchOddsEndPoint.getInstance(hourRateLimit);
+	}
+
+	/**
 	 * Retourne une instance du proxy Season
 	 *
 	 * @return
@@ -167,6 +250,16 @@ public class APIClient {
 	public SeasonsEndPoint getSeasonsEndPointInstance() {
 		checkInstance();
 		return SeasonsEndPoint.getInstance();
+	}
+
+	/**
+	 * Retourne une instance du proxy Season
+	 *
+	 * @return
+	 */
+	public SeasonsEndPoint getSeasonsEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return SeasonsEndPoint.getInstance(hourRateLimit);
 	}
 
 	/**
@@ -180,6 +273,16 @@ public class APIClient {
 	}
 
 	/**
+	 * Retourne une instance du proxy Standing
+	 *
+	 * @return
+	 */
+	public StandingsEndPoint getStandingsProxyInstance(final Double hourRateLimit) {
+		checkInstance();
+		return StandingsEndPoint.getInstance(hourRateLimit);
+	}
+
+	/**
 	 * Retourne une instance du proxy Team
 	 *
 	 * @return
@@ -187,6 +290,16 @@ public class APIClient {
 	public TeamsEndPoint getTeamsEndPointInstance() {
 		checkInstance();
 		return TeamsEndPoint.getInstance();
+	}
+
+	/**
+	 * Retourne une instance du proxy Team
+	 *
+	 * @return
+	 */
+	public TeamsEndPoint getTeamsEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return TeamsEndPoint.getInstance(hourRateLimit);
 	}
 
 	/**
@@ -200,6 +313,16 @@ public class APIClient {
 	}
 
 	/**
+	 * Retourne une instance du proxy TvStations
+	 *
+	 * @return
+	 */
+	public TvStationsEndPoint getTvStationsEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return TvStationsEndPoint.getInstance(hourRateLimit);
+	}
+
+	/**
 	 * Retourne une instance du proxy VenuesEndPoint
 	 *
 	 * @return
@@ -210,6 +333,16 @@ public class APIClient {
 	}
 
 	/**
+	 * Retourne une instance du proxy VenuesEndPoint
+	 *
+	 * @return
+	 */
+	public VenuesEndPoint getVenuesEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return VenuesEndPoint.getInstance(hourRateLimit);
+	}
+
+	/**
 	 * Retourne une instance du proxy VideoHighlights
 	 *
 	 * @return
@@ -217,6 +350,16 @@ public class APIClient {
 	public VideoHighlightsEndPoint getVideoHighlightsEndPointInstance() {
 		checkInstance();
 		return VideoHighlightsEndPoint.getInstance();
+	}
+
+	/**
+	 * Retourne une instance du proxy VideoHighlights
+	 *
+	 * @return
+	 */
+	public VideoHighlightsEndPoint getVideoHighlightsEndPointInstance(final Double hourRateLimit) {
+		checkInstance();
+		return VideoHighlightsEndPoint.getInstance(hourRateLimit);
 	}
 
 	/**

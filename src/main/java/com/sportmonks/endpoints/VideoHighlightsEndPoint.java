@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.APIClient;
 import com.sportmonks.data.entity.VideoHighlight;
 import com.sportmonks.data.structure.VideoHighlights;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
@@ -22,8 +23,8 @@ public class VideoHighlightsEndPoint extends AbstractEndPoint {
 	private static VideoHighlightsEndPoint INSTANCE;
 	private long lastCall = 0;
 
-	private VideoHighlightsEndPoint() {
-		// Hide constructor
+	private VideoHighlightsEndPoint(final Double hourRateLimit) {
+		super(hourRateLimit);
 	}
 
 	/**
@@ -32,12 +33,24 @@ public class VideoHighlightsEndPoint extends AbstractEndPoint {
 	 * @return
 	 */
 	public static VideoHighlightsEndPoint getInstance() {
+		return getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+	}
+
+	/**
+	 * Creation d'une instance avec une limite d'appel par heure personnalisée
+	 *
+	 * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
+	 *
+	 * @return
+	 */
+	public static VideoHighlightsEndPoint getInstance(final Double customHourRateLimit) {
 		if (INSTANCE == null) {
-			INSTANCE = new VideoHighlightsEndPoint();
+			INSTANCE = new VideoHighlightsEndPoint(customHourRateLimit);
 		}
 
 		return INSTANCE;
 	}
+
 
 	/**
 	 *

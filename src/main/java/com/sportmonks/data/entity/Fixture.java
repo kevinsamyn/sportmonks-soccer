@@ -56,7 +56,7 @@ public class Fixture {
 	@JsonProperty("weather_report")
 	private WeatherReport weatherReport;
 	@JsonProperty("commentaries")
-	private Commentaries commentaries;
+	private Boolean commentaries;
 	@JsonProperty("attendance")
 	private Integer attendance;
 	@JsonProperty("winning_odds_calculated")
@@ -219,12 +219,12 @@ public class Fixture {
 	}
 
 	@JsonProperty("commentaries")
-	public Commentaries getCommentaries() {
+	public Boolean getCommentaries() {
 		return commentaries;
 	}
 
 	@JsonProperty("commentaries")
-	public void setCommentaries(Commentaries commentaries) {
+	public void setCommentaries(Boolean commentaries) {
 		this.commentaries = commentaries;
 	}
 

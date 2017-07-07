@@ -47,7 +47,7 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 	 * @param fixtureId
 	 * @return
 	 */
-	public List<Offer> findByFixture(final Integer fixtureId) {
+	public List<Offer> findByFixture(final Long fixtureId) {
 		final PreMatchOddsEndPointParams params = new PreMatchOddsEndPointParams();
 		params.setBookmakerId(null);
 		params.setFixtureId(fixtureId);
@@ -73,7 +73,7 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 	 * @param fixtureId
 	 * @return
 	 */
-	public List<Offer> findByFixtureAndBookmaker(final Integer fixtureId, final Integer bookmakerId) {
+	public List<Offer> findByFixtureAndBookmaker(final Long fixtureId, final Long bookmakerId) {
 		final PreMatchOddsEndPointParams params = new PreMatchOddsEndPointParams();
 		params.setFixtureId(fixtureId);
 		params.setBookmakerId(bookmakerId);

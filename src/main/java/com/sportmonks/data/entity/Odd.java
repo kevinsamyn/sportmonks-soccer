@@ -19,9 +19,9 @@ public class Odd {
 	@JsonProperty("value")
 	private String value;
 	@JsonProperty("winning")
-	private Object winning;
+	private String winning;
 	@JsonProperty("handicap")
-	private Object handicap;
+	private String handicap;
 	@JsonProperty("total")
 	private String total;
 	@JsonProperty("last_update")
@@ -50,22 +50,22 @@ public class Odd {
 	}
 
 	@JsonProperty("winning")
-	public Object getWinning() {
+	public String getWinning() {
 		return winning;
 	}
 
 	@JsonProperty("winning")
-	public void setWinning(Object winning) {
+	public void setWinning(String winning) {
 		this.winning = winning;
 	}
 
 	@JsonProperty("handicap")
-	public Object getHandicap() {
+	public String getHandicap() {
 		return handicap;
 	}
 
 	@JsonProperty("handicap")
-	public void setHandicap(Object handicap) {
+	public void setHandicap(String handicap) {
 		this.handicap = handicap;
 	}
 

@@ -19,9 +19,9 @@ public class FixtureScores {
 	@JsonProperty("visitorteam_score")
 	private Integer visitorTeamScore;
 	@JsonProperty("localteam_pen_score")
-	private Object localTeamPenScore;
+	private Integer localTeamPenScore;
 	@JsonProperty("visitorteam_pen_score")
-	private Object visitorTeamPenScore;
+	private Integer visitorTeamPenScore;
 	@JsonProperty("ht_score")
 	private String htScore;
 	@JsonProperty("ft_score")
@@ -52,22 +52,22 @@ public class FixtureScores {
 	}
 
 	@JsonProperty("localteam_pen_score")
-	public Object getLocalTeamPenScore() {
+	public Integer getLocalTeamPenScore() {
 		return localTeamPenScore;
 	}
 
 	@JsonProperty("localteam_pen_score")
-	public void setLocalteamPenScore(Object localteamPenScore) {
+	public void setLocalteamPenScore(Integer localteamPenScore) {
 		this.localTeamPenScore = localteamPenScore;
 	}
 
 	@JsonProperty("visitorteam_pen_score")
-	public Object getVisitorTeamPenScore() {
+	public Integer getVisitorTeamPenScore() {
 		return visitorTeamPenScore;
 	}
 
 	@JsonProperty("visitorteam_pen_score")
-	public void setVisitorTeamPenScore(Object visitorTeamPenScore) {
+	public void setVisitorTeamPenScore(Integer visitorTeamPenScore) {
 		this.visitorTeamPenScore = visitorTeamPenScore;
 	}
 

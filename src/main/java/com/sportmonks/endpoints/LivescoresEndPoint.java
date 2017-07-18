@@ -102,6 +102,15 @@ public class LivescoresEndPoint extends AbstractEndPoint {
 	 */
 	public List<Fixture> findCurrentlyPlayed() {
 		final LivescoresEndPointParams params = new LivescoresEndPointParams();
+		return findCurrentlyPlayed(params);
+	}
+
+	/**
+	 *
+	 * @param params
+	 * @return
+	 */
+	public List<Fixture> findCurrentlyPlayed(final LivescoresEndPointParams params) {
 		return find(CURRENTLY_PLAYED_URL, params);
 	}
 

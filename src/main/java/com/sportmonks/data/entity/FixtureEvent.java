@@ -34,11 +34,11 @@ public class FixtureEvent {
 	@JsonProperty("minute")
 	private Integer minute;
 	@JsonProperty("extra_minute")
-	private Object extraMinute;
+	private Integer extraMinute;
 	@JsonProperty("reason")
-	private Object reason;
+	private String reason;
 	@JsonProperty("injuried")
-	private Object injuried;
+	private Boolean injuried;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -133,32 +133,32 @@ public class FixtureEvent {
 	}
 
 	@JsonProperty("extra_minute")
-	public Object getExtraMinute() {
+	public Integer getExtraMinute() {
 		return extraMinute;
 	}
 
 	@JsonProperty("extra_minute")
-	public void setExtraMinute(Object extraMinute) {
+	public void setExtraMinute(Integer extraMinute) {
 		this.extraMinute = extraMinute;
 	}
 
 	@JsonProperty("reason")
-	public Object getReason() {
+	public String getReason() {
 		return reason;
 	}
 
 	@JsonProperty("reason")
-	public void setReason(Object reason) {
+	public void setReason(String reason) {
 		this.reason = reason;
 	}
 
 	@JsonProperty("injuried")
-	public Object getInjuried() {
+	public Boolean getInjuried() {
 		return injuried;
 	}
 
 	@JsonProperty("injuried")
-	public void setInjuried(Object injuried) {
+	public void setInjuried(Boolean injuried) {
 		this.injuried = injuried;
 	}
 

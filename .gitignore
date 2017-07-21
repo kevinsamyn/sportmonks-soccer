@@ -24,7 +24,7 @@ hs_err_pid*
 
 .gitignore
 .idea/
-sportmonks-soccer-api.iml
+*.iml
 src/main/resources/
 src/test/
 target/

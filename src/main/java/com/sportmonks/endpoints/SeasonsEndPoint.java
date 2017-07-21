@@ -1,10 +1,5 @@
 package com.sportmonks.endpoints;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Season;
 import com.sportmonks.data.structure.OneSeason;
@@ -12,6 +7,11 @@ import com.sportmonks.data.structure.Seasons;
 import com.sportmonks.exceptions.HaveToDefineValidIdException;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Proxy Seasons
@@ -81,7 +81,6 @@ public class SeasonsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 * @param seasonId
 	 * @return
 	 * @throws NotFoundException
 	 */

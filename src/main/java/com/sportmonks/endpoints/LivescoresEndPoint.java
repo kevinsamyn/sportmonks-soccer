@@ -1,15 +1,15 @@
 package com.sportmonks.endpoints;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.mashape.unirest.http.HttpResponse;
 import com.sportmonks.data.entity.Fixture;
 import com.sportmonks.data.structure.Livescores;
 import com.sportmonks.exceptions.NotFoundException;
 import com.sportmonks.tools.RestTool;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Proxy Fixtures
@@ -112,6 +112,10 @@ public class LivescoresEndPoint extends AbstractEndPoint {
 	 */
 	public List<Fixture> findCurrentlyPlayed(final LivescoresEndPointParams params) {
 		return find(CURRENTLY_PLAYED_URL, params);
+	}
+
+	public List<Fixture> findToday(final LivescoresEndPointParams params) {
+		return find(BASE_URL, params);
 	}
 
 	/**

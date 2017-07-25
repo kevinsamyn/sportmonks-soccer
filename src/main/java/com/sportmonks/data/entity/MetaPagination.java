@@ -1,15 +1,9 @@
 package com.sportmonks.data.entity;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.annotation.*;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.HashMap;
+import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "total", "count", "per_page", "current_page", "total_pages", "links" })
@@ -26,8 +20,8 @@ public class MetaPagination {
 	@JsonProperty("total_pages")
 	private Integer totalPages;
 	@JsonProperty("links")
-	private List<Object> links = null;
-	@JsonIgnore
+    private Object links = null;
+    @JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("total")
@@ -81,13 +75,13 @@ public class MetaPagination {
 	}
 
 	@JsonProperty("links")
-	public List<Object> getLinks() {
-		return links;
+    public Object getLinks() {
+        return links;
 	}
 
 	@JsonProperty("links")
-	public void setLinks(List<Object> links) {
-		this.links = links;
+    public void setLinks(Object links) {
+        this.links = links;
 	}
 
 	@JsonAnyGetter

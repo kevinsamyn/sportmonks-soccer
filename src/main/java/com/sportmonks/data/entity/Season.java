@@ -1,37 +1,27 @@
 package com.sportmonks.data.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import com.sportmonks.data.structure.*;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.sportmonks.data.structure.Fixtures;
-import com.sportmonks.data.structure.Leagues;
-import com.sportmonks.data.structure.Results;
-import com.sportmonks.data.structure.Rounds;
-import com.sportmonks.data.structure.SeasonRelationships;
-import com.sportmonks.data.structure.Stages;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "type", "id", "name", "league_id", "is_current_season", "current_round_id", "current_stage_id", "league", "attributes", "fixtures",
 		"results", "relationships", "rounds", "stages" })
 public class Season {
 	@JsonProperty("id")
-	private String id;
+	private Long id;
 	@JsonProperty("name")
 	private String name;
 	@JsonProperty("league_id")
-	private Integer leagueId;
+	private Long leagueId;
 	@JsonProperty("is_current_season")
 	private Boolean isCurrentSeason;
 	@JsonProperty("current_round_id")
-	private Object currentRoundId;
+	private Long currentRoundId;
 	@JsonProperty("current_stage_id")
-	private Object currentStageId;
+	private Long currentStageId;
 	@JsonProperty("league")
 	private Leagues leagues;
 	@JsonProperty("results")
@@ -63,12 +53,12 @@ public class Season {
 	}
 
 	@JsonProperty("id")
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
 	@JsonProperty("id")
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -133,12 +123,12 @@ public class Season {
 	}
 
 	@JsonProperty("league_id")
-	public Integer getLeagueId() {
+	public Long getLeagueId() {
 		return leagueId;
 	}
 
 	@JsonProperty("league_id")
-	public void setLeagueId(final Integer leagueId) {
+	public void setLeagueId(final Long leagueId) {
 		this.leagueId = leagueId;
 	}
 
@@ -153,22 +143,22 @@ public class Season {
 	}
 
 	@JsonProperty("current_round_id")
-	public Object getCurrentRoundId() {
+	public Long getCurrentRoundId() {
 		return currentRoundId;
 	}
 
 	@JsonProperty("current_round_id")
-	public void setCurrentRoundId(final Object currentRoundId) {
+	public void setCurrentRoundId(final Long currentRoundId) {
 		this.currentRoundId = currentRoundId;
 	}
 
 	@JsonProperty("current_stage_id")
-	public Object getCurrentStageId() {
+	public Long getCurrentStageId() {
 		return currentStageId;
 	}
 
 	@JsonProperty("current_stage_id")
-	public void setCurrentStageId(final Object currentStageId) {
+	public void setCurrentStageId(final Long currentStageId) {
 		this.currentStageId = currentStageId;
 	}
 

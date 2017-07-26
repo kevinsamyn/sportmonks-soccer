@@ -1,14 +1,9 @@
 package com.sportmonks.data.entity;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "name", "league_id", "is_current_season", "current_round_id", "current_stage_id" })
@@ -17,7 +12,7 @@ public class SeasonAttributes {
 	@JsonProperty("name")
 	private String name;
 	@JsonProperty("league_id")
-	private Integer leagueId;
+	private Long leagueId;
 	@JsonProperty("is_current_season")
 	private Boolean isCurrentSeason;
 	@JsonProperty("current_round_id")
@@ -38,12 +33,12 @@ public class SeasonAttributes {
 	}
 
 	@JsonProperty("league_id")
-	public Integer getLeagueId() {
+	public Long getLeagueId() {
 		return leagueId;
 	}
 
 	@JsonProperty("league_id")
-	public void setLeagueId(Integer leagueId) {
+	public void setLeagueId(Long leagueId) {
 		this.leagueId = leagueId;
 	}
 

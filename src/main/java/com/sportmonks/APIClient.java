@@ -1,35 +1,21 @@
 package com.sportmonks;
 
-import java.io.IOException;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
-
-import javax.net.ssl.SSLContext;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.mashape.unirest.http.ObjectMapper;
+import com.mashape.unirest.http.Unirest;
+import com.sportmonks.endpoints.*;
+import com.sportmonks.exceptions.InvalidServiceInstanceException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.ssl.TrustStrategy;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.mashape.unirest.http.ObjectMapper;
-import com.mashape.unirest.http.Unirest;
-import com.sportmonks.endpoints.CommentariesEndPoint;
-import com.sportmonks.endpoints.ContinentsEndPoint;
-import com.sportmonks.endpoints.CountriesEndPoint;
-import com.sportmonks.endpoints.FixturesEndPoint;
-import com.sportmonks.endpoints.LeaguesEndPoint;
-import com.sportmonks.endpoints.LivescoresEndPoint;
-import com.sportmonks.endpoints.PlayersEndPoint;
-import com.sportmonks.endpoints.PreMatchOddsEndPoint;
-import com.sportmonks.endpoints.SeasonsEndPoint;
-import com.sportmonks.endpoints.StandingsEndPoint;
-import com.sportmonks.endpoints.TeamsEndPoint;
-import com.sportmonks.endpoints.TvStationsEndPoint;
-import com.sportmonks.endpoints.VenuesEndPoint;
-import com.sportmonks.endpoints.VideoHighlightsEndPoint;
-import com.sportmonks.exceptions.InvalidServiceInstanceException;
+import javax.net.ssl.SSLContext;
+import java.io.IOException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 
 public class APIClient {
 
@@ -404,7 +390,8 @@ public class APIClient {
 			@Override
 			public <T> T readValue(final String value, final Class<T> valueType) {
 				try {
-					jacksonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                    jacksonObjectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+                    jacksonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 					jacksonObjectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
 					return jacksonObjectMapper.readValue(value, valueType);
 				} catch (final IOException e) {

@@ -2,7 +2,6 @@ package com.sportmonks;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mashape.unirest.http.ObjectMapper;
 import com.mashape.unirest.http.Unirest;
 import com.sportmonks.endpoints.*;
@@ -390,7 +389,6 @@ public class APIClient {
 			@Override
 			public <T> T readValue(final String value, final Class<T> valueType) {
 				try {
-                    jacksonObjectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
                     jacksonObjectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 					jacksonObjectMapper.configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true);
 					return jacksonObjectMapper.readValue(value, valueType);

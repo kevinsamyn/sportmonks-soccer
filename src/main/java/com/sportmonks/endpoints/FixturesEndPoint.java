@@ -18,10 +18,11 @@ import com.sportmonks.tools.RestTool;
  */
 public class FixturesEndPoint extends AbstractEndPoint {
 
-	private static final String BASE_URL = AbstractEndPoint.API_URL + AbstractEndPoint.VERSION + "/fixtures";
-	private static final String BY_ID_URL = BASE_URL + "/{fixtureId}";
-	private static final String BY_DATE_URL = BASE_URL + "/date/{date}";
-	private static final String BY_DATE_RANGE_URL = BASE_URL + "/{from}/{to}";
+	public static final String BASE_URL = AbstractEndPoint.API_URL + AbstractEndPoint.VERSION + "/fixtures";
+	public static final String BY_ID_URL = BASE_URL + "/{fixtureId}";
+	public static final String BY_DATE_URL = BASE_URL + "/date/{date}";
+	public static final String BY_DATE_RANGE_URL = BASE_URL + "/{from}/{to}";
+
 	private static FixturesEndPoint INSTANCE;
 	private long lastFixtureProxyCall = 0;
 

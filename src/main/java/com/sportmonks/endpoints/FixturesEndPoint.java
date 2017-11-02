@@ -21,7 +21,7 @@ public class FixturesEndPoint extends AbstractEndPoint {
 	public static final String BASE_URL = AbstractEndPoint.API_URL + AbstractEndPoint.VERSION + "/fixtures";
 	public static final String BY_ID_URL = BASE_URL + "/{fixtureId}";
 	public static final String BY_DATE_URL = BASE_URL + "/date/{date}";
-	public static final String BY_DATE_RANGE_URL = BASE_URL + "/{from}/{to}";
+	public static final String BY_DATE_RANGE_URL = BASE_URL + "/between/{from}/{to}";
 
 	private static FixturesEndPoint INSTANCE;
 	private long lastFixtureProxyCall = 0;
@@ -121,7 +121,12 @@ public class FixturesEndPoint extends AbstractEndPoint {
 
 		final HttpResponse<Fixtures> httpResponse = RestTool.get(url, paramsMap, Fixtures.class);
 		try {
-			return httpResponse.getBody().getData();
+			List<Fixture> data = httpResponse.getBody().getData();
+			if(data == null){
+				data = new ArrayList<>();
+			}
+
+			return data;
 		} catch (Exception e) {
 			return new ArrayList<>();
 		}

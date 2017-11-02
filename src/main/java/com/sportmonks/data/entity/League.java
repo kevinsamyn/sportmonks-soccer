@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.sportmonks.data.structure.Seasons;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id", "legacy_id", "name", "is_cup", "current_season_id", "current_round_id", "current_stage_id", "country_id", "seasons", "season" })
+@JsonPropertyOrder({ "id", "legacy_id", "name", "is_cup", "current_season_id", "current_round_id", "current_stage_id", "country_id", "seasons", "season", "country" })
 public class League {
 
 	@JsonProperty("id")
@@ -35,6 +35,9 @@ public class League {
 	private Seasons seasons;
 	@JsonProperty("season")
 	private Season season;
+	@JsonProperty("country")
+	private Country country;
+
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -136,6 +139,20 @@ public class League {
 	@JsonProperty("season")
 	public void setSeason(Season season) {
 		this.season = season;
+	}
+
+	@JsonProperty("country")
+	public Country getCountry() {
+		return country;
+	}
+
+	@JsonProperty("country")
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+
+	public void setAdditionalProperties(Map<String, Object> additionalProperties) {
+		this.additionalProperties = additionalProperties;
 	}
 
 	@JsonAnyGetter

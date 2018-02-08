@@ -77,7 +77,7 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 		final PreMatchOddsEndPointParams params = new PreMatchOddsEndPointParams();
 		params.setFixtureId(fixtureId);
 		params.setBookmakerId(bookmakerId);
-		return findByFixture(params);
+		return findByFixtureAndBookmaker(params);
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 				paramsMap.put("fixtureId", params.getFixtureId().toString());
 			}
 			if (params.isValidBookmakerId()) {
-				paramsMap.put("bookmakerId", params.getFixtureId().toString());
+				paramsMap.put("bookmakerId", params.getBookmakerId().toString());
 			}
 		}
 

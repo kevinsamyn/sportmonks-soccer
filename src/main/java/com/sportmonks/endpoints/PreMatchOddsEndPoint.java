@@ -1,15 +1,15 @@
 package com.sportmonks.endpoints;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.data.entity.Market;
+import com.sportmonks.data.structure.PreMatchOdds;
+import com.sportmonks.exceptions.HaveToDefineValidIdException;
+import com.sportmonks.tools.RestTool;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.mashape.unirest.http.HttpResponse;
-import com.sportmonks.data.entity.Offer;
-import com.sportmonks.data.structure.PreMatchOdds;
-import com.sportmonks.exceptions.HaveToDefineValidIdException;
-import com.sportmonks.tools.RestTool;
 
 /**
  * Proxy Teams
@@ -43,11 +43,10 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 *
 	 * @param fixtureId
 	 * @return
 	 */
-	public List<Offer> findByFixture(final Long fixtureId) {
+	public List<Market> findByFixture(final Long fixtureId) {
 		final PreMatchOddsEndPointParams params = new PreMatchOddsEndPointParams();
 		params.setBookmakerId(null);
 		params.setFixtureId(fixtureId);
@@ -55,11 +54,10 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 *
 	 * @param params
 	 * @return
-	   */
-	public List<Offer> findByFixture(final PreMatchOddsEndPointParams params) {
+	 */
+	public List<Market> findByFixture(final PreMatchOddsEndPointParams params) {
 
 		if (!params.isValidFixtureId()) {
 			throw new HaveToDefineValidIdException();
@@ -69,11 +67,10 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 *
 	 * @param fixtureId
 	 * @return
 	 */
-	public List<Offer> findByFixtureAndBookmaker(final Long fixtureId, final Long bookmakerId) {
+	public List<Market> findByFixtureAndBookmaker(final Long fixtureId, final Long bookmakerId) {
 		final PreMatchOddsEndPointParams params = new PreMatchOddsEndPointParams();
 		params.setFixtureId(fixtureId);
 		params.setBookmakerId(bookmakerId);
@@ -81,11 +78,10 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 *
 	 * @param params
 	 * @return
 	 */
-	public List<Offer> findByFixtureAndBookmaker(final PreMatchOddsEndPointParams params) {
+	public List<Market> findByFixtureAndBookmaker(final PreMatchOddsEndPointParams params) {
 
 		if (!params.isValidFixtureId()) {
 			throw new HaveToDefineValidIdException();
@@ -98,16 +94,15 @@ public class PreMatchOddsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 *
 	 * @param url
 	 * @param params
-	   * @return
-	   */
-	private List<Offer> findResults(final String url, final PreMatchOddsEndPointParams params) {
+	 * @return
+	 */
+	private List<Market> findResults(final String url, final PreMatchOddsEndPointParams params) {
 
 		lastOddProxyCall = waitBeforeNextCall(lastOddProxyCall);
 
-		final List<Offer> response = new ArrayList<>();
+		final List<Market> response = new ArrayList<>();
 
 		final Map<String, String> paramsMap = new HashMap<>();
 		if (params != null) {

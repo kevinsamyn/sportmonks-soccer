@@ -1,33 +1,28 @@
 package com.sportmonks.data.structure;
 
+import com.fasterxml.jackson.annotation.*;
+import com.sportmonks.data.entity.Market;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.sportmonks.data.entity.Offer;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "data" })
 public class InPlayOdds {
 
 	@JsonProperty("data")
-	private List<Offer> data = null;
+	private List<Market> data = null;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
 	@JsonProperty("data")
-	public List<Offer> getData() {
+	public List<Market> getData() {
 		return data;
 	}
 
 	@JsonProperty("data")
-	public void setData(List<Offer> data) {
+	public void setData(List<Market> data) {
 		this.data = data;
 	}
 

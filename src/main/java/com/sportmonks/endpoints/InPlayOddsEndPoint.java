@@ -1,15 +1,15 @@
 package com.sportmonks.endpoints;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.sportmonks.data.entity.Market;
+import com.sportmonks.data.structure.InPlayOdds;
+import com.sportmonks.exceptions.HaveToDefineValidIdException;
+import com.sportmonks.tools.RestTool;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.mashape.unirest.http.HttpResponse;
-import com.sportmonks.data.entity.Offer;
-import com.sportmonks.data.structure.InPlayOdds;
-import com.sportmonks.exceptions.HaveToDefineValidIdException;
-import com.sportmonks.tools.RestTool;
 
 /**
  * Proxy Teams
@@ -42,22 +42,20 @@ public class InPlayOddsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 *
 	 * @param fixtureId
 	 * @return
 	 */
-	public List<Offer> findByFixture(final Integer fixtureId) {
+	public List<Market> findByFixture(final Integer fixtureId) {
 		final InPlayOddsEndPointParams params = new InPlayOddsEndPointParams();
 		params.setFixtureId(fixtureId);
 		return findByFixture(params);
 	}
 
 	/**
-	 *
 	 * @param params
 	 * @return
-	   */
-	public List<Offer> findByFixture(final InPlayOddsEndPointParams params) {
+	 */
+	public List<Market> findByFixture(final InPlayOddsEndPointParams params) {
 
 		if (!params.isValidFixtureId()) {
 			throw new HaveToDefineValidIdException();
@@ -67,16 +65,15 @@ public class InPlayOddsEndPoint extends AbstractEndPoint {
 	}
 
 	/**
-	 *
 	 * @param url
 	 * @param params
-	   * @return
-	   */
-	private List<Offer> findResults(final String url, final InPlayOddsEndPointParams params) {
+	 * @return
+	 */
+	private List<Market> findResults(final String url, final InPlayOddsEndPointParams params) {
 
 		lastOddProxyCall = waitBeforeNextCall(lastOddProxyCall);
 
-		final List<Offer> response = new ArrayList<>();
+		final List<Market> response = new ArrayList<>();
 
 		final Map<String, String> paramsMap = new HashMap<>();
 		if (params != null) {

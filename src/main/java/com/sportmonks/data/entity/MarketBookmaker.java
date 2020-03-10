@@ -1,19 +1,14 @@
 package com.sportmonks.data.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import com.sportmonks.data.structure.Odds;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.sportmonks.data.structure.Odds;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id", "name", "odds" })
-public class OfferBookmaker {
+@JsonPropertyOrder({"id", "name", "odds"})
+public class MarketBookmaker {
 
 	@JsonProperty("id")
 	private Long id;

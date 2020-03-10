@@ -1,26 +1,32 @@
 package com.sportmonks.data.entity;
 
+import com.fasterxml.jackson.annotation.*;
+import com.sportmonks.data.structure.MarketBookmakers;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.sportmonks.data.structure.OfferBookmakers;
-
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "name", "bookmaker" })
-public class Offer {
-
+@JsonPropertyOrder({"id", "name", "bookmaker"})
+public class Market {
+	@JsonProperty("id")
+	private Long id;
 	@JsonProperty("name")
 	private String name;
 	@JsonProperty("bookmaker")
-	private OfferBookmakers bookmaker;
+	private MarketBookmakers bookmaker;
 	@JsonIgnore
 	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+	@JsonProperty("id")
+	public Long getId() {
+		return id;
+	}
+
+	@JsonProperty("id")
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	@JsonProperty("name")
 	public String getName() {
@@ -33,12 +39,12 @@ public class Offer {
 	}
 
 	@JsonProperty("bookmaker")
-	public OfferBookmakers getBookmaker() {
+	public MarketBookmakers getBookmaker() {
 		return bookmaker;
 	}
 
 	@JsonProperty("bookmaker")
-	public void setBookmaker(OfferBookmakers bookmaker) {
+	public void setBookmaker(MarketBookmakers bookmaker) {
 		this.bookmaker = bookmaker;
 	}
 

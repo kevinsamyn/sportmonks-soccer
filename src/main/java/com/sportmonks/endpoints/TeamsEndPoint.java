@@ -151,16 +151,19 @@ public class TeamsEndPoint extends AbstractEndPoint {
 
 
         final HttpResponse<OneTeam> httpResponse = RestTool.get(BY_ID_URL, paramsMap, OneTeam.class);
+        if (httpResponse == null) {
+            throw new NotFoundException();
+        }
         final OneTeam body = httpResponse.getBody();
         if (body == null) {
             throw new NotFoundException();
         }
-        final Team league = body.getData();
-        if (league == null) {
+        final Team team = body.getData();
+        if (team == null) {
             throw new NotFoundException();
         }
 
-        return league;
+        return team;
     }
 
     /**

@@ -4,31 +4,31 @@ package com.sportmonks.data.enums;
  * Created by kevin on 21/05/2016.
  */
 public enum WeatherTypeEnum {
-	CLEAR_SKY("clear-sky"),
+    CLEAR_SKY("clear-sky"),
 
-	FEW_CLOUDS("few-clouds"),
+    FEW_CLOUDS("few-clouds"),
 
-	SCATTERED_CLOUDS("scattered-clouds"),
+    SCATTERED_CLOUDS("scattered-clouds"),
 
-	BROKEN_CLOUDS("broken-clouds"),
+    BROKEN_CLOUDS("broken-clouds"),
 
-	SHOWER_RAIN("shower-rain"),
+    SHOWER_RAIN("shower-rain"),
 
-	RAIN("rain"),
+    RAIN("rain"),
 
-	THUNDERSTORM("thunderstorm"),
+    THUNDERSTORM("thunderstorm"),
 
-	SNOW("snow"),
+    SNOW("snow"),
 
-	MIST("mist");
+    MIST("mist");
 
-	private final String code;
+    private final String code;
 
-	WeatherTypeEnum(final String label) {
-		this.code = label;
-	}
+    WeatherTypeEnum(final String label) {
+        this.code = label;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public String getCode() {
+        return code;
+    }
 }

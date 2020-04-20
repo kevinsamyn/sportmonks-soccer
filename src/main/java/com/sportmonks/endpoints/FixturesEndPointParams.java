@@ -17,35 +17,35 @@ public class FixturesEndPointParams extends AbstractEndPointParams {
     private String date;
 
     /**
-     * @return
+     * @return id fixture
      */
     public Integer getFixtureId() {
         return fixtureId;
     }
 
     /**
-     * @param fixtureId
+     * @param fixtureId id fixture
      */
     public void setFixtureId(final Integer fixtureId) {
         this.fixtureId = fixtureId;
     }
 
     /**
-     * @param relation
+     * @param relation voulue
      */
     public void addRelation(final FixturesEndPoint.Relation relation) {
         relations.add(relation.toString());
     }
 
     /**
-     * @return
+     * @return String relations
      */
     public String getRelations() {
         return StringUtils.join(relations, ",");
     }
 
     /**
-     * @return
+     * @return true si fixture id valide
      */
     public boolean isValidId() {
         return fixtureId != null && fixtureId > 0;
@@ -76,14 +76,14 @@ public class FixturesEndPointParams extends AbstractEndPointParams {
     }
 
     /**
-     *
+     * @return true si date valide
      */
     public boolean isValidFromDate() {
         return !StringUtils.isEmpty(betweenFromDate) && betweenFromDate.length() == 10;
     }
 
     /**
-     *
+     * @return true si date valide
      */
     public boolean isValidToDate() {
         return !StringUtils.isEmpty(betweenToDate) && betweenToDate.length() == 10;

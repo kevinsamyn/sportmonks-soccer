@@ -33,7 +33,7 @@ public class FixturesEndPoint extends AbstractEndPoint {
      * Creation d'une instance avec une limite d'appel par heure personnalisée
      *
      * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
-     * @return
+     * @return FixturesEndPoint
      */
     public static FixturesEndPoint getInstance(final Double customHourRateLimit) {
         if (INSTANCE == null) {
@@ -77,9 +77,9 @@ public class FixturesEndPoint extends AbstractEndPoint {
     }
 
     /**
-     * @param FixtureId
-     * @return
-     * @throws NotFoundException
+     * @param FixtureId id du mathc
+     * @return Fixture
+     * @throws NotFoundException si match n'existe pas
      */
     public Fixture findOne(final Integer FixtureId) throws NotFoundException {
         final FixturesEndPointParams params = new FixturesEndPointParams();
@@ -87,6 +87,11 @@ public class FixturesEndPoint extends AbstractEndPoint {
         return findOne(params);
     }
 
+    /**
+     * @param params d'appel
+     * @return Fixture
+     * @throws NotFoundException si match n'existe pas
+     */
     public Fixture findOne(final FixturesEndPointParams params) throws NotFoundException {
 
         if (!params.isValidId()) {
@@ -96,12 +101,23 @@ public class FixturesEndPoint extends AbstractEndPoint {
         return findUnique(params);
     }
 
+    /**
+     * @param date   cible
+     * @param params d'appel
+     * @return List of {@link Fixture}
+     */
     public List<Fixture> findByDate(final Date date, final FixturesEndPointParams params) {
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         params.setDate(sdf.format(date));
         return findSeverals(BY_DATE_URL, params);
     }
 
+    /**
+     * @param fromDate debut periode
+     * @param toDate   fin periode
+     * @param params   d'appel
+     * @return List of {@link Fixture}
+     */
     public List<Fixture> findByDateRange(final Date fromDate, final Date toDate, final FixturesEndPointParams params) {
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         params.setBetweenFromDate(sdf.format(fromDate));
@@ -109,6 +125,13 @@ public class FixturesEndPoint extends AbstractEndPoint {
         return findSeverals(BY_DATE_RANGE_URL, params);
     }
 
+    /**
+     * @param fromDate debut periode
+     * @param toDate   fin periode
+     * @param teamId   id equipe
+     * @param params   d'appel
+     * @return List of {@link Fixture}
+     */
     public List<Fixture> findByDateRangeForTeam(final Date fromDate, final Date toDate, final Integer teamId, final FixturesEndPointParams params) {
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         params.setBetweenFromDate(sdf.format(fromDate));
@@ -119,6 +142,10 @@ public class FixturesEndPoint extends AbstractEndPoint {
 
     /**
      * Liste de toutes les Fixturees autorisées avec les relations définies
+     *
+     * @param url    appelée
+     * @param params d'appel
+     * @return List of {@link Fixture}
      */
     public List<Fixture> findSeverals(final String url, final FixturesEndPointParams params) {
 

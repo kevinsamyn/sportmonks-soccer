@@ -33,7 +33,7 @@ public class TeamsEndPoint extends AbstractEndPoint {
      * Creation d'une instance avec une limite d'appel par heure personnalisée
      *
      * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
-     * @return
+     * @return TeamsEndPoint
      */
     public static TeamsEndPoint getInstance(final Double customHourRateLimit) {
         if (INSTANCE == null) {
@@ -44,9 +44,9 @@ public class TeamsEndPoint extends AbstractEndPoint {
     }
 
     /**
-     * @param teamId
-     * @return
-     * @throws NotFoundException
+     * @param teamId id de la team
+     * @return Team
+     * @throws NotFoundException si team n'existe pas
      */
     public Team findById(final Long teamId) throws NotFoundException {
         final TeamsEndPointParams params = new TeamsEndPointParams();
@@ -57,9 +57,9 @@ public class TeamsEndPoint extends AbstractEndPoint {
     /**
      * Liste de toutes les équipe d'une saison avec les relations définies
      *
-     * @param params
-     * @return
-     * @throws NotFoundException
+     * @param params d'appel de l'API
+     * @return Team
+     * @throws NotFoundException is team n'existe pas
      */
     public Team findById(final TeamsEndPointParams params) throws NotFoundException {
 
@@ -73,8 +73,8 @@ public class TeamsEndPoint extends AbstractEndPoint {
     /**
      * Liste de toutes les équipes d'une saison
      *
-     * @param seasonId
-     * @return
+     * @param seasonId id de la saison
+     * @return List of Team
      */
     public List<Team> findBySeason(final Long seasonId) {
         final TeamsEndPointParams params = new TeamsEndPointParams();
@@ -84,6 +84,9 @@ public class TeamsEndPoint extends AbstractEndPoint {
 
     /**
      * Liste de toutes les équipes pour une saison avec les relations définies
+     *
+     * @param params d'appel de l'API
+     * @return List of Team
      */
     public List<Team> findBySeason(final TeamsEndPointParams params) {
 
@@ -97,9 +100,9 @@ public class TeamsEndPoint extends AbstractEndPoint {
     /**
      * Retourne une liste de résultat
      *
-     * @param url
-     * @param params
-     * @return
+     * @param url    appelée
+     * @param params d'appel
+     * @return List of Team
      */
     private List<Team> findResults(final String url, final TeamsEndPointParams params) {
 
@@ -134,8 +137,8 @@ public class TeamsEndPoint extends AbstractEndPoint {
     /**
      * Retourne un résultat unique
      *
-     * @param params
-     * @return
+     * @param params d'appel
+     * @return Team
      */
     private Team findUnique(final TeamsEndPointParams params) throws NotFoundException {
 

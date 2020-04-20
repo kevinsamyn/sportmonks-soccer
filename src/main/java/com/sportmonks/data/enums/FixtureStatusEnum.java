@@ -4,45 +4,45 @@ package com.sportmonks.data.enums;
  * Created by kevin on 21/05/2016.
  */
 public enum FixtureStatusEnum {
-	NS("Not started"),
+    NS("Not started"),
 
-	LIVE("Live"),
+    LIVE("Live"),
 
-	HT("Half-Time"),
+    HT("Half-Time"),
 
-	FT("Full-Time"),
+    FT("Full-Time"),
 
-	ET("Extra-Time"),
+    ET("Extra-Time"),
 
-	PEN_LIVE("Penalty Shootout"),
+    PEN_LIVE("Penalty Shootout"),
 
-	AET("Finished after extra time"),
+    AET("Finished after extra time"),
 
-	BREAK("Match finished, waiting for extra time to start"),
+    BREAK("Match finished, waiting for extra time to start"),
 
-	FT_PEN("Full-Time after penalties"),
+    FT_PEN("Full-Time after penalties"),
 
-	CANCL("Cancelled"),
+    CANCL("Cancelled"),
 
-	POSTP("PostPhoned"),
+    POSTP("PostPhoned"),
 
-	INT("Interrupted"),
+    INT("Interrupted"),
 
-	ABAN("Abandoned"),
+    ABAN("Abandoned"),
 
-	SUSP("Suspended"),
+    SUSP("Suspended"),
 
-	AWARDED("Awarded"),
+    AWARDED("Awarded"),
 
-	DELAYED("Delayed");
+    DELAYED("Delayed");
 
-	private final String label;
+    private final String label;
 
-	FixtureStatusEnum(final String label) {
-		this.label = label;
-	}
+    FixtureStatusEnum(final String label) {
+        this.label = label;
+    }
 
-	public String getLabel() {
-		return label;
-	}
+    public String getLabel() {
+        return label;
+    }
 }

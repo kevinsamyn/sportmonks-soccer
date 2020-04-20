@@ -13,29 +13,35 @@ public class BookmakersEndPointParams extends AbstractEndPointParams {
     private Integer bookmakerId;
 
     /**
-     * @param relation
+     * @param relation voule
      */
     public void addRelation(final BookmakersEndPoint.Relation relation) {
         relations.add(relation.toString());
     }
 
     /**
-     * @return
+     * @return String relations
      */
     public String getRelations() {
         return StringUtils.join(relations, ",");
     }
 
+    /**
+     * @return id bookmaker
+     */
     public Integer getBookmakerId() {
         return bookmakerId;
     }
 
+    /**
+     * @param bookmakerId id bookmaker
+     */
     public void setBookmakerId(Integer bookmakerId) {
         this.bookmakerId = bookmakerId;
     }
 
     /**
-     * @return
+     * @return true si bookmaker valide
      */
     public boolean isValidId() {
         return bookmakerId != null && bookmakerId > 0;

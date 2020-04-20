@@ -32,7 +32,7 @@ public class MarketsEndPoint extends AbstractEndPoint {
      * Creation d'une instance avec une limite d'appel par heure personnalisée
      *
      * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
-     * @return
+     * @return MarketsEndPoint
      */
     public static MarketsEndPoint getInstance(final Double customHourRateLimit) {
         if (INSTANCE == null) {
@@ -73,9 +73,9 @@ public class MarketsEndPoint extends AbstractEndPoint {
     }
 
     /**
-     * @param marketId
-     * @return
-     * @throws NotFoundException
+     * @param marketId id du market
+     * @return Market
+     * @throws NotFoundException si market n'existe pas
      */
     public Market findById(final Integer marketId) throws NotFoundException {
         final MarketsEndPointParams params = new MarketsEndPointParams();
@@ -85,6 +85,10 @@ public class MarketsEndPoint extends AbstractEndPoint {
 
     /**
      * Liste de toutes les competitions autorisées avec les relations définies
+     *
+     * @param params d'appel de l'api
+     * @return Market
+     * @throws NotFoundException si market n'existe pas
      */
     public Market findOne(final MarketsEndPointParams params) throws NotFoundException {
 
@@ -102,6 +106,9 @@ public class MarketsEndPoint extends AbstractEndPoint {
 
     /**
      * Liste de toutes les saisons autorisées avec les relations définies
+     *
+     * @param params d'appel
+     * @return List of {@link Market}
      */
     public List<Market> findAll(final MarketsEndPointParams params) {
         if (null != params) {
@@ -113,9 +120,9 @@ public class MarketsEndPoint extends AbstractEndPoint {
     /**
      * Retourne une liste de résultat
      *
-     * @param url
-     * @param params
-     * @return
+     * @param url    appelée
+     * @param params d'appel
+     * @return List of {@link Market}
      */
     private List<Market> findResults(final String url, final MarketsEndPointParams params) {
 

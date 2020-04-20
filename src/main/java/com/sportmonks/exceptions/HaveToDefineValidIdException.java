@@ -5,20 +5,20 @@ package com.sportmonks.exceptions;
  */
 public class HaveToDefineValidIdException extends ClientRuntimeException {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = -3880033916288895155L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -3880033916288895155L;
 
-	public HaveToDefineValidIdException(String string) {
-		super();
-	}
+    public HaveToDefineValidIdException(String string) {
+        super();
+    }
 
-	public HaveToDefineValidIdException() {
-		super();
-	}
+    public HaveToDefineValidIdException() {
+        super();
+    }
 
-	public HaveToDefineValidIdException(Integer playerId) {
-		super();
-	}
+    public HaveToDefineValidIdException(Integer playerId) {
+        super();
+    }
 }

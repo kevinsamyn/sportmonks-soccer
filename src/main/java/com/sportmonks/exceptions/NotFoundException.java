@@ -5,13 +5,13 @@ package com.sportmonks.exceptions;
  */
 public class NotFoundException extends ClientException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7315717408903062139L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -7315717408903062139L;
 
-	public NotFoundException() {
-		super();
-	}
+    public NotFoundException() {
+        super();
+    }
 
 }

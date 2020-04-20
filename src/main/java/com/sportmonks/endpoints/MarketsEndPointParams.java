@@ -13,14 +13,14 @@ public class MarketsEndPointParams extends AbstractEndPointParams {
     private Integer marketId;
 
     /**
-     * @param relation
+     * @param relation voulue
      */
     public void addRelation(final MarketsEndPoint.Relation relation) {
         relations.add(relation.toString());
     }
 
     /**
-     * @return
+     * @return String relations
      */
     public String getRelations() {
         return StringUtils.join(relations, ",");
@@ -35,7 +35,7 @@ public class MarketsEndPointParams extends AbstractEndPointParams {
     }
 
     /**
-     * @return
+     * @return true si market id valide
      */
     public boolean isValidId() {
         return marketId != null && marketId > 0;

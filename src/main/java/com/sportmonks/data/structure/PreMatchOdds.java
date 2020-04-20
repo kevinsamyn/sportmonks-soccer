@@ -8,32 +8,32 @@ import java.util.List;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "data" })
+@JsonPropertyOrder({"data"})
 public class PreMatchOdds {
 
-	@JsonProperty("data")
-	private List<Market> data = null;
-	@JsonIgnore
-	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    @JsonProperty("data")
+    private List<Market> data = null;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-	@JsonProperty("data")
-	public List<Market> getData() {
-		return data;
-	}
+    @JsonProperty("data")
+    public List<Market> getData() {
+        return data;
+    }
 
-	@JsonProperty("data")
-	public void setData(List<Market> data) {
-		this.data = data;
-	}
+    @JsonProperty("data")
+    public void setData(List<Market> data) {
+        this.data = data;
+    }
 
-	@JsonAnyGetter
-	public Map<String, Object> getAdditionalProperties() {
-		return this.additionalProperties;
-	}
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
 
-	@JsonAnySetter
-	public void setAdditionalProperty(String name, Object value) {
-		this.additionalProperties.put(name, value);
-	}
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
 
 }

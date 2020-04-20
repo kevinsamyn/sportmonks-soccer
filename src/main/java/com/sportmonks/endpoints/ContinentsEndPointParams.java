@@ -1,35 +1,50 @@
 package com.sportmonks.endpoints;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashSet;
 import java.util.Set;
-
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by kevin on 28/05/2016.
  */
 public class ContinentsEndPointParams extends AbstractEndPointParams {
-	private Integer continentId;
-	private Set<String> relations = new HashSet<>();
+    private final Set<String> relations = new HashSet<>();
+    private Integer continentId;
 
-	public void addRelation(final ContinentsEndPoint.Relation relation) {
-		relations.add(relation.toString());
-	}
+    /**
+     * @param relation voulue
+     */
+    public void addRelation(final ContinentsEndPoint.Relation relation) {
+        relations.add(relation.toString());
+    }
 
-	public String getRelations() {
-		return StringUtils.join(relations, ",");
-	}
+    /**
+     * @return String relations
+     */
+    public String getRelations() {
+        return StringUtils.join(relations, ",");
+    }
 
-	public boolean isValidId() {
-		return continentId != null && continentId > 0;
-	}
+    /**
+     * @return true si continent id valide
+     */
+    public boolean isValidId() {
+        return continentId != null && continentId > 0;
+    }
 
-	public Integer getContinentId() {
-		return continentId;
-	}
+    /**
+     * @return continent id
+     */
+    public Integer getContinentId() {
+        return continentId;
+    }
 
-	public void setContinentId(Integer continentId) {
-		this.continentId = continentId;
-	}
+    /**
+     * @param continentId continent id
+     */
+    public void setContinentId(Integer continentId) {
+        this.continentId = continentId;
+    }
 
 }

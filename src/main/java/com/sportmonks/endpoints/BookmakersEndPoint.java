@@ -32,7 +32,7 @@ public class BookmakersEndPoint extends AbstractEndPoint {
      * Creation d'une instance avec une limite d'appel par heure personnalisée
      *
      * @param customHourRateLimit : APIClient.FREE_PLAN_RATE_LIMIT, APIClient.CLASSIC_PLAN_RATE_LIMIT
-     * @return
+     * @return BookmakersEndPoint
      */
     public static BookmakersEndPoint getInstance(final Double customHourRateLimit) {
         if (INSTANCE == null) {
@@ -42,6 +42,12 @@ public class BookmakersEndPoint extends AbstractEndPoint {
         return INSTANCE;
     }
 
+    /**
+     * @param url    appelée
+     * @param params d'appel
+     * @return Bookmaker
+     * @throws NotFoundException si bookamker n'existe pas
+     */
     private Bookmaker findUnique(final String url, final BookmakersEndPointParams params) throws NotFoundException {
 
         lastCall = waitBeforeNextCall(lastCall);
@@ -73,9 +79,9 @@ public class BookmakersEndPoint extends AbstractEndPoint {
     }
 
     /**
-     * @param bookmakerId
-     * @return
-     * @throws NotFoundException
+     * @param bookmakerId id bookmaker
+     * @return Bookmaker
+     * @throws NotFoundException si bookmaker n'existe pas
      */
     public Bookmaker findById(final Integer bookmakerId) throws NotFoundException {
         final BookmakersEndPointParams params = new BookmakersEndPointParams();
@@ -83,25 +89,20 @@ public class BookmakersEndPoint extends AbstractEndPoint {
         return findOne(params);
     }
 
-    /**
-     * Liste de toutes les competitions autorisées avec les relations définies
-     */
-    public Bookmaker findOne(final BookmakersEndPointParams params) throws NotFoundException {
+    private Bookmaker findOne(final BookmakersEndPointParams params) throws NotFoundException {
 
         if (!params.isValidId()) {
             throw new HaveToDefineValidIdException();
         }
 
-        final Bookmaker Bookmaker = findUnique(BY_ID_URL, params);
-        if (null == Bookmaker) {
-            throw new NotFoundException();
-        }
-
-        return Bookmaker;
+        return findUnique(BY_ID_URL, params);
     }
 
     /**
      * Liste de toutes les saisons autorisées avec les relations définies
+     *
+     * @param params d'appel de l'api
+     * @return List of {@link Bookmaker}
      */
     public List<Bookmaker> findAll(final BookmakersEndPointParams params) {
         if (null != params) {
@@ -113,9 +114,9 @@ public class BookmakersEndPoint extends AbstractEndPoint {
     /**
      * Retourne une liste de résultat
      *
-     * @param url
-     * @param params
-     * @return
+     * @param url    appelée
+     * @param params d'appel de l'api
+     * @return List of {@link Bookmaker
      */
     private List<Bookmaker> findResults(final String url, final BookmakersEndPointParams params) {
 

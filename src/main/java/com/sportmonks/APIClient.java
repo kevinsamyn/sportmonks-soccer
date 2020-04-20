@@ -25,7 +25,7 @@ public class APIClient {
     private String apiToken = null;
 
     /**
-     * @param apiToken
+     * @param apiToken fourni par sportmonks.com
      */
     private APIClient(final String apiToken) {
         super();
@@ -39,7 +39,7 @@ public class APIClient {
     /**
      * Retourne l'instance courante
      *
-     * @return
+     * @return APIClient
      */
     public static APIClient getInstance() {
         checkInstance();
@@ -56,8 +56,8 @@ public class APIClient {
     /**
      * Retourne l'instance courante ou la crée
      *
-     * @param apiToken
-     * @return
+     * @param apiToken fourni par sportmonks.com
+     * @return APIClient
      */
     public static APIClient getInstance(final String apiToken) {
         if (INSTANCE == null || INSTANCE.getApiToken() == null || !INSTANCE.getApiToken().equals(apiToken)) {
@@ -70,7 +70,7 @@ public class APIClient {
     /**
      * Retourne une instance de CommentariesEndPoint
      *
-     * @return
+     * @return CommentariesEndPoint
      */
     public CommentariesEndPoint getCommentariesEndPointInstance() {
         checkInstance();
@@ -78,8 +78,8 @@ public class APIClient {
     }
 
     /**
-     * @param hourRateLimit
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return CommentariesEndPoint
      */
     public CommentariesEndPoint getCommentariesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -89,7 +89,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Competition
      *
-     * @return
+     * @return ContinentsEndPoint
      */
     public ContinentsEndPoint getContinentsEndPointInstance() {
         checkInstance();
@@ -99,7 +99,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Competition
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return ContinentsEndPoint
      */
     public ContinentsEndPoint getContinentsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -109,7 +110,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Competition
      *
-     * @return
+     * @return CountriesEndPoint
      */
     public CountriesEndPoint getCountriesEndPointInstance() {
         checkInstance();
@@ -119,7 +120,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Competition
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return CountriesEndPoint
      */
     public CountriesEndPoint getCountriesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -129,7 +131,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Fixture
      *
-     * @return
+     * @return FixturesEndPoint
      */
     public FixturesEndPoint getFixturesEndPointInstance() {
         checkInstance();
@@ -139,7 +141,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Fixture
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return FixturesEndPoint
      */
     public FixturesEndPoint getFixturesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -149,7 +152,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Competition
      *
-     * @return
+     * @return LeaguesEndPoint
      */
     public LeaguesEndPoint getLeaguesEndPointInstance() {
         checkInstance();
@@ -159,7 +162,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Competition
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return LeaguesEndPoint
      */
     public LeaguesEndPoint getLeaguesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -169,7 +173,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Livescores
      *
-     * @return
+     * @return LivescoresEndPoint
      */
     public LivescoresEndPoint getLivescoresEndPointInstance() {
         checkInstance();
@@ -179,7 +183,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Livescores
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return LivescoresEndPoint
      */
     public LivescoresEndPoint getLivescoresEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -189,7 +194,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Player
      *
-     * @return
+     * @return PlayersEndPoint
      */
     public PlayersEndPoint getPlayersEndPointInstance() {
         checkInstance();
@@ -199,7 +204,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Player
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return PlayersEndPoint
      */
     public PlayersEndPoint getPlayersEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -209,7 +215,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy PreMatchOddsEndPoint
      *
-     * @return
+     * @return PreMatchOddsEndPoint
      */
     public PreMatchOddsEndPoint getPreMatchOddsEndPointInstance() {
         checkInstance();
@@ -219,7 +225,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy PreMatchOddsEndPoint
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return PreMatchOddsEndPoint
      */
     public PreMatchOddsEndPoint getPreMatchOddsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -229,7 +236,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Season
      *
-     * @return
+     * @return SeasonsEndPoint
      */
     public SeasonsEndPoint getSeasonsEndPointInstance() {
         checkInstance();
@@ -239,7 +246,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Season
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return SeasonsEndPoint
      */
     public SeasonsEndPoint getSeasonsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -249,7 +257,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy {@link com.sportmonks.data.entity.Bookmaker}
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return BookmakersEndPoint
      */
     public BookmakersEndPoint getBookmakersEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -259,7 +268,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Market
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return MarketsEndPoint
      */
     public MarketsEndPoint getMarketsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -269,7 +279,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Standing
      *
-     * @return
+     * @return StandingsEndPoint
      */
     public StandingsEndPoint getStandingsProxyInstance() {
         checkInstance();
@@ -279,7 +289,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Standing
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return StandingsEndPoint
      */
     public StandingsEndPoint getStandingsProxyInstance(final Double hourRateLimit) {
         checkInstance();
@@ -289,7 +300,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Team
      *
-     * @return
+     * @return TeamsEndPoint
      */
     public TeamsEndPoint getTeamsEndPointInstance() {
         checkInstance();
@@ -299,7 +310,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy Team
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return TeamsEndPoint
      */
     public TeamsEndPoint getTeamsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -309,7 +321,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy TvStations
      *
-     * @return
+     * @return TvStationsEndPoint
      */
     public TvStationsEndPoint getTvStationsEndPointInstance() {
         checkInstance();
@@ -319,7 +331,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy TvStations
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return TvStationsEndPoint
      */
     public TvStationsEndPoint getTvStationsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -329,7 +342,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy VenuesEndPoint
      *
-     * @return
+     * @return VenuesEndPoint
      */
     public VenuesEndPoint getVenuesEndPointInstance() {
         checkInstance();
@@ -339,7 +352,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy VenuesEndPoint
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return VenuesEndPoint
      */
     public VenuesEndPoint getVenuesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -349,7 +363,7 @@ public class APIClient {
     /**
      * Retourne une instance du proxy VideoHighlights
      *
-     * @return
+     * @return VideoHighlightsEndPoint
      */
     public VideoHighlightsEndPoint getVideoHighlightsEndPointInstance() {
         checkInstance();
@@ -359,7 +373,8 @@ public class APIClient {
     /**
      * Retourne une instance du proxy VideoHighlights
      *
-     * @return
+     * @param hourRateLimit limite d'appel à l'API
+     * @return VideoHighlightsEndPoint
      */
     public VideoHighlightsEndPoint getVideoHighlightsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
@@ -369,14 +384,14 @@ public class APIClient {
     /**
      * Retourne l'API Key
      *
-     * @return
+     * @return String API Token
      */
     public String getApiToken() {
         return apiToken;
     }
 
     /**
-     * @return
+     * @return HttpClient SSL
      */
     private HttpClient createSSLHttpClient() {
 
@@ -399,10 +414,11 @@ public class APIClient {
     }
 
     /**
-     * @return
+     * @return ObjectMapper
      */
     private ObjectMapper createObjectMapper() {
-        final ObjectMapper objectMapper = new ObjectMapper() {
+
+        return new ObjectMapper() {
             public final com.fasterxml.jackson.databind.ObjectMapper jacksonObjectMapper = new com.fasterxml.jackson.databind.ObjectMapper();
 
             @Override
@@ -425,8 +441,6 @@ public class APIClient {
                 }
             }
         };
-
-        return objectMapper;
     }
 
 }

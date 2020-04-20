@@ -11,29 +11,29 @@ import java.util.Map;
 @JsonPropertyOrder({"data"})
 public class MarketBookmakers {
 
-	@JsonProperty("data")
-	private List<MarketBookmaker> data = null;
-	@JsonIgnore
-	private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    @JsonProperty("data")
+    private List<MarketBookmaker> data = null;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-	@JsonProperty("data")
-	public List<MarketBookmaker> getData() {
-		return data;
-	}
+    @JsonProperty("data")
+    public List<MarketBookmaker> getData() {
+        return data;
+    }
 
-	@JsonProperty("data")
-	public void setData(List<MarketBookmaker> data) {
-		this.data = data;
-	}
+    @JsonProperty("data")
+    public void setData(List<MarketBookmaker> data) {
+        this.data = data;
+    }
 
-	@JsonAnyGetter
-	public Map<String, Object> getAdditionalProperties() {
-		return this.additionalProperties;
-	}
+    @JsonAnyGetter
+    public Map<String, Object> getAdditionalProperties() {
+        return this.additionalProperties;
+    }
 
-	@JsonAnySetter
-	public void setAdditionalProperty(String name, Object value) {
-		this.additionalProperties.put(name, value);
-	}
+    @JsonAnySetter
+    public void setAdditionalProperty(String name, Object value) {
+        this.additionalProperties.put(name, value);
+    }
 
 }

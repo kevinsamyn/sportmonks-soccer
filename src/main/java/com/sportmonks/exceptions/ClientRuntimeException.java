@@ -5,8 +5,8 @@ package com.sportmonks.exceptions;
  */
 public class ClientRuntimeException extends RuntimeException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7972164546615972680L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -7972164546615972680L;
 }

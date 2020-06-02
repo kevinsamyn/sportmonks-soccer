@@ -272,15 +272,25 @@ public class APIClient {
         return SeasonsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
+
     /**
      * Retourne une instance du proxy {@link com.sportmonks.data.entity.Bookmaker}
      *
-     * @param hourRateLimit limite d'appel à l'API
      * @return BookmakersEndPoint
      */
-    public BookmakersEndPoint getBookmakersEndPointInstance(final Double hourRateLimit) {
+    public BookmakersEndPoint getBookmakersEndPointInstance() {
         checkInstance();
-        return BookmakersEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
+        return BookmakersEndPoint.getInstance(rateLimit);
+    }
+
+    /**
+     * Retourne une instance du proxy Market
+     *
+     * @return MarketsEndPoint
+     */
+    public MarketsEndPoint getMarketsEndPointInstance() {
+        checkInstance();
+        return MarketsEndPoint.getInstance(rateLimit);
     }
 
     /**

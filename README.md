@@ -4,6 +4,17 @@ Simplify SportMonks Soccer API v2.0 Calling in Java
 ## Objectif
 Cette bibliothèque à pour but de faciliter l'utilisation de l'API Soccer de Sportmonks.com
 
+## Importation
+Ajouter la dépendence ci-dessous dans votre pom.xml
+```xml
+<dependency>
+  <groupId>com.github.kevinsamyn.sportmonks-soccer-api</groupId>
+  <artifactId>sportmonks-soccer-api</artifactId>
+  <version>2.1.2</version>
+  <classifier>jar-with-dependencies</classifier>
+</dependency>
+```
+
 ## Utilisation
 ### 1 - Récupération d'une instance du client
 ```java

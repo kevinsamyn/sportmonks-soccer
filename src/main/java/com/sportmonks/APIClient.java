@@ -19,18 +19,20 @@ import java.security.cert.X509Certificate;
 public class APIClient {
 
     public static final Double FREE_PLAN_RATE_LIMIT = 180.0;
-    public static final Double CLASSIC_PLAN_RATE_LIMIT = 1500.0;
+    public static final Double CLASSIC_PLAN_RATE_LIMIT = 2000.0;
 
     private static APIClient INSTANCE;
-    private String apiToken = null;
+    private final Double rateLimit;
+    private final String apiToken;
 
     /**
      * @param apiToken fourni par sportmonks.com
      */
-    private APIClient(final String apiToken) {
+    private APIClient(final String apiToken, final Double rateLimit) {
         super();
         // Hide constructor
         this.apiToken = apiToken;
+        this.rateLimit = rateLimit != null ? rateLimit : FREE_PLAN_RATE_LIMIT;
 
         Unirest.setObjectMapper(createObjectMapper());
         Unirest.setHttpClient(createSSLHttpClient());
@@ -59,9 +61,25 @@ public class APIClient {
      * @param apiToken fourni par sportmonks.com
      * @return APIClient
      */
+
     public static APIClient getInstance(final String apiToken) {
         if (INSTANCE == null || INSTANCE.getApiToken() == null || !INSTANCE.getApiToken().equals(apiToken)) {
-            INSTANCE = new APIClient(apiToken);
+            INSTANCE = new APIClient(apiToken, null);
+        }
+
+        return INSTANCE;
+    }
+    
+    /**
+     * Retourne l'instance courante ou la crée
+     *
+     * @param apiToken fourni par sportmonks.com
+     * @param rateLimit taux d'appel a l'api
+     * @return APIClient
+     */
+    public static APIClient getInstance(final String apiToken, final Double rateLimit) {
+        if (INSTANCE == null || INSTANCE.getApiToken() == null || !INSTANCE.getApiToken().equals(apiToken)) {
+            INSTANCE = new APIClient(apiToken, rateLimit);
         }
 
         return INSTANCE;
@@ -74,7 +92,7 @@ public class APIClient {
      */
     public CommentariesEndPoint getCommentariesEndPointInstance() {
         checkInstance();
-        return CommentariesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return CommentariesEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -83,7 +101,7 @@ public class APIClient {
      */
     public CommentariesEndPoint getCommentariesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return CommentariesEndPoint.getInstance(hourRateLimit);
+        return CommentariesEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -93,7 +111,7 @@ public class APIClient {
      */
     public ContinentsEndPoint getContinentsEndPointInstance() {
         checkInstance();
-        return ContinentsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return ContinentsEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -104,7 +122,7 @@ public class APIClient {
      */
     public ContinentsEndPoint getContinentsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return ContinentsEndPoint.getInstance(hourRateLimit);
+        return ContinentsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -114,7 +132,7 @@ public class APIClient {
      */
     public CountriesEndPoint getCountriesEndPointInstance() {
         checkInstance();
-        return CountriesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return CountriesEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -125,7 +143,7 @@ public class APIClient {
      */
     public CountriesEndPoint getCountriesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return CountriesEndPoint.getInstance(hourRateLimit);
+        return CountriesEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -135,7 +153,7 @@ public class APIClient {
      */
     public FixturesEndPoint getFixturesEndPointInstance() {
         checkInstance();
-        return FixturesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return FixturesEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -146,7 +164,7 @@ public class APIClient {
      */
     public FixturesEndPoint getFixturesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return FixturesEndPoint.getInstance(hourRateLimit);
+        return FixturesEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -156,7 +174,7 @@ public class APIClient {
      */
     public LeaguesEndPoint getLeaguesEndPointInstance() {
         checkInstance();
-        return LeaguesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return LeaguesEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -167,7 +185,7 @@ public class APIClient {
      */
     public LeaguesEndPoint getLeaguesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return LeaguesEndPoint.getInstance(hourRateLimit);
+        return LeaguesEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -177,7 +195,7 @@ public class APIClient {
      */
     public LivescoresEndPoint getLivescoresEndPointInstance() {
         checkInstance();
-        return LivescoresEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return LivescoresEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -188,7 +206,7 @@ public class APIClient {
      */
     public LivescoresEndPoint getLivescoresEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return LivescoresEndPoint.getInstance(hourRateLimit);
+        return LivescoresEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -198,7 +216,7 @@ public class APIClient {
      */
     public PlayersEndPoint getPlayersEndPointInstance() {
         checkInstance();
-        return PlayersEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return PlayersEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -209,7 +227,7 @@ public class APIClient {
      */
     public PlayersEndPoint getPlayersEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return PlayersEndPoint.getInstance(hourRateLimit);
+        return PlayersEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -219,7 +237,7 @@ public class APIClient {
      */
     public PreMatchOddsEndPoint getPreMatchOddsEndPointInstance() {
         checkInstance();
-        return PreMatchOddsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return PreMatchOddsEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -230,7 +248,7 @@ public class APIClient {
      */
     public PreMatchOddsEndPoint getPreMatchOddsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return PreMatchOddsEndPoint.getInstance(hourRateLimit);
+        return PreMatchOddsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -240,7 +258,7 @@ public class APIClient {
      */
     public SeasonsEndPoint getSeasonsEndPointInstance() {
         checkInstance();
-        return SeasonsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return SeasonsEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -251,7 +269,7 @@ public class APIClient {
      */
     public SeasonsEndPoint getSeasonsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return SeasonsEndPoint.getInstance(hourRateLimit);
+        return SeasonsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -262,7 +280,7 @@ public class APIClient {
      */
     public BookmakersEndPoint getBookmakersEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return BookmakersEndPoint.getInstance(hourRateLimit);
+        return BookmakersEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -273,7 +291,7 @@ public class APIClient {
      */
     public MarketsEndPoint getMarketsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return MarketsEndPoint.getInstance(hourRateLimit);
+        return MarketsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -283,7 +301,7 @@ public class APIClient {
      */
     public StandingsEndPoint getStandingsProxyInstance() {
         checkInstance();
-        return StandingsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return StandingsEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -294,7 +312,7 @@ public class APIClient {
      */
     public StandingsEndPoint getStandingsProxyInstance(final Double hourRateLimit) {
         checkInstance();
-        return StandingsEndPoint.getInstance(hourRateLimit);
+        return StandingsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -304,7 +322,7 @@ public class APIClient {
      */
     public TeamsEndPoint getTeamsEndPointInstance() {
         checkInstance();
-        return TeamsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return TeamsEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -315,7 +333,7 @@ public class APIClient {
      */
     public TeamsEndPoint getTeamsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return TeamsEndPoint.getInstance(hourRateLimit);
+        return TeamsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -325,7 +343,7 @@ public class APIClient {
      */
     public TvStationsEndPoint getTvStationsEndPointInstance() {
         checkInstance();
-        return TvStationsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return TvStationsEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -336,7 +354,7 @@ public class APIClient {
      */
     public TvStationsEndPoint getTvStationsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return TvStationsEndPoint.getInstance(hourRateLimit);
+        return TvStationsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -346,7 +364,7 @@ public class APIClient {
      */
     public VenuesEndPoint getVenuesEndPointInstance() {
         checkInstance();
-        return VenuesEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return VenuesEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -357,7 +375,7 @@ public class APIClient {
      */
     public VenuesEndPoint getVenuesEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return VenuesEndPoint.getInstance(hourRateLimit);
+        return VenuesEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**
@@ -367,7 +385,7 @@ public class APIClient {
      */
     public VideoHighlightsEndPoint getVideoHighlightsEndPointInstance() {
         checkInstance();
-        return VideoHighlightsEndPoint.getInstance(APIClient.CLASSIC_PLAN_RATE_LIMIT);
+        return VideoHighlightsEndPoint.getInstance(rateLimit);
     }
 
     /**
@@ -378,7 +396,7 @@ public class APIClient {
      */
     public VideoHighlightsEndPoint getVideoHighlightsEndPointInstance(final Double hourRateLimit) {
         checkInstance();
-        return VideoHighlightsEndPoint.getInstance(hourRateLimit);
+        return VideoHighlightsEndPoint.getInstance(hourRateLimit != null ? hourRateLimit : rateLimit);
     }
 
     /**

@@ -10,7 +10,7 @@ Ajouter la dépendence ci-dessous dans votre pom.xml
 <dependency>
   <groupId>com.github.kevinsamyn.sportmonks-soccer-api</groupId>
   <artifactId>sportmonks-soccer-api</artifactId>
-  <version>2.1.2</version>
+  <version>2.1.3.1</version>
   <classifier>jar-with-dependencies</classifier>
 </dependency>
 ```

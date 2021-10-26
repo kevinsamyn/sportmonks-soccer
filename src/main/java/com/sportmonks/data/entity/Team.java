@@ -11,7 +11,7 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "legacy_id", "name", "twitter", "country_id", "national_team", "founded", "logo_path", "venue_id", "squad", "venue", "coach",
-        "fifaranking", "uefaranking"})
+    "fifaranking", "uefaranking"})
 public class Team {
 
     @JsonProperty("id")

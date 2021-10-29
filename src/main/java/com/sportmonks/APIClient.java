@@ -69,11 +69,11 @@ public class APIClient {
 
         return INSTANCE;
     }
-    
+
     /**
      * Retourne l'instance courante ou la crée
      *
-     * @param apiToken fourni par sportmonks.com
+     * @param apiToken  fourni par sportmonks.com
      * @param rateLimit taux d'appel a l'api
      * @return APIClient
      */

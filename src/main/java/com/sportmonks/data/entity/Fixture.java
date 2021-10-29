@@ -8,9 +8,9 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"id", "league_id", "season_id", "stage_id", "round_id", "aggregate_id", "venue_id", "referee_id", "localteam_id", "visitorteam_id",
-        "weather_report", "commentaries", "attendance", "winning_odds_calculated", "formations", "scores", "time", "deleted", "localTeam", "visitorTeam",
-        "substitutions", "goals", "cards", "other", "lineup", "bench", "stats", "comments", "tvstations", "highlights", "league", "season", "round", "stage",
-        "events", "odds", "venue"})
+    "weather_report", "commentaries", "attendance", "winning_odds_calculated", "formations", "scores", "time", "deleted", "localTeam", "visitorTeam",
+    "substitutions", "goals", "cards", "other", "lineup", "bench", "stats", "comments", "tvstations", "highlights", "league", "season", "round", "stage",
+    "events", "odds", "venue"})
 public class Fixture {
 
     @JsonProperty("id")

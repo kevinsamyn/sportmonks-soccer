@@ -8,7 +8,7 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"team_id", "fixture_id", "player_id", "player_name", "number", "position", "additional_position", "formation_position", "posx", "posy",
-        "stats"})
+    "stats"})
 public class Lineup {
 
     @JsonProperty("team_id")

@@ -8,7 +8,7 @@ import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({"team_id", "season_id", "win", "draw", "lost", "goals_for", "goals_against", "clean_sheet", "scoring_minutes", "avg_goals_per_game_scored",
-        "avg_goals_per_game_conceded", "avg_first_goal_scored", "avg_first_goal_conceded", "failed_to_score"})
+    "avg_goals_per_game_conceded", "avg_first_goal_scored", "avg_first_goal_conceded", "failed_to_score"})
 public class TeamSeasonStats {
 
     @JsonProperty("team_id")
